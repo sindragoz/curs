@@ -6,7 +6,7 @@ namespace curs._1
     public partial class FCar : Form
     {
 
-        CursDataContext dc;
+        //CursDataContext dc;
 
         int id_car;
 
@@ -24,12 +24,12 @@ namespace curs._1
 
         FRedactCar f_red;
 
-        public FCar(CursDataContext dc)
-        {
-            InitializeComponent();
-            this.dc = dc; 
-            showbd();
-        }
+        //public FCar(CursDataContext dc)
+        //{
+        //    InitializeComponent();
+        //    this.dc = dc; 
+        //    showbd();
+        //}
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
@@ -49,7 +49,7 @@ namespace curs._1
 
                  heigth = Convert.ToInt32(f_red.textBox5.Text);
 
-                dc.AddCar(number, brand, carrying_capacity, width, heigth, status);
+                //dc.AddCar(number, brand, carrying_capacity, width, heigth, status);
 
                 showbd();
 
@@ -81,7 +81,7 @@ namespace curs._1
 
                 heigth = Convert.ToInt32(f_red.textBox5.Text);
 
-                dc.UpdateCar(car.id_car, number, brand, carrying_capacity, width, heigth, status);
+                //dc.UpdateCar(car.id_car, number, brand, carrying_capacity, width, heigth, status);
 
                 showbd();
             }
@@ -95,8 +95,8 @@ namespace curs._1
         {
             try
             {
-                id_car = (listBox1.SelectedItem as Car).id_car;
-                dc.DelCar(id_car);
+                 id_car = (listBox1.SelectedItem as Car).id_car;
+                //dc.DelCar(4);
                 showbd();
             }
             catch (Exception ex)
@@ -110,11 +110,11 @@ namespace curs._1
             try
             {
                 listBox1.Items.Clear();
-                var cars = dc.ShowCar();
-                foreach(var v in cars)
-                {
-                    listBox1.Items.Add(v);
-                }
+                //var cars = dc.ShowCar();
+                //foreach(var v in cars)
+                //{
+                //    listBox1.Items.Add(v);
+                //}
             }
             catch (Exception ex)
             {
@@ -122,6 +122,9 @@ namespace curs._1
             }
         }
 
+        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
 
+        }
     }
 }

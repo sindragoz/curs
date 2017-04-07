@@ -13,19 +13,18 @@ namespace curs._1
     
     public partial class FClient : Form
     {
-        CursDataContext dc;
+        DataClasses1DataContext dc;
 
         FRedactClient f_red;
 
-         int id_client;
-
+        int id
          string full_name;
 
          string phone_number;
 
          string company;
 
-        public FClient(CursDataContext dc)
+        public FClient(DataClasses1DataContext dc)
         {
             InitializeComponent();
             this.dc = dc;
@@ -60,12 +59,9 @@ namespace curs._1
         {
             try
             {
-                Client client = (listBox1.SelectedItem as Client);
-                //id_client = (listBox1.SelectedItem as Client).id_client;
-                dc.DelClient(client.id_client);
+                dc.DelClient((listBox1.SelectedItem as Client).id_client);
                 showbd();
-                   label1.Text = (listBox1.SelectedItem as Client).ToString();//id_client + " ";
-                label1.Text = id_client + " ";
+
             }
             catch (Exception ex)
             {
