@@ -33,9 +33,6 @@ namespace curs._1
     partial void InsertCar(Car instance);
     partial void UpdateCar(Car instance);
     partial void DeleteCar(Car instance);
-    partial void InsertClient(Client instance);
-    partial void UpdateClient(Client instance);
-    partial void DeleteClient(Client instance);
     partial void InsertDriver(Driver instance);
     partial void UpdateDriver(Driver instance);
     partial void DeleteDriver(Driver instance);
@@ -45,6 +42,9 @@ namespace curs._1
     partial void InsertProfit_driver(Profit_driver instance);
     partial void UpdateProfit_driver(Profit_driver instance);
     partial void DeleteProfit_driver(Profit_driver instance);
+    partial void InsertClient1(Client1 instance);
+    partial void UpdateClient1(Client1 instance);
+    partial void DeleteClient1(Client1 instance);
     #endregion
 		
 		public DBDataContext() : 
@@ -85,14 +85,6 @@ namespace curs._1
 			}
 		}
 		
-		public System.Data.Linq.Table<Client> Client
-		{
-			get
-			{
-				return this.GetTable<Client>();
-			}
-		}
-		
 		public System.Data.Linq.Table<Driver> Driver
 		{
 			get
@@ -116,185 +108,17 @@ namespace curs._1
 				return this.GetTable<Profit_driver>();
 			}
 		}
-
-        ////////////////////////////////client
-        public void AddClient(string full_name, string phone_number, string company)
-        {
-            Client client = new Client();
-            client.full_name = full_name;
-            client.phone_number = phone_number;
-            client.company = company;
-            Client.InsertOnSubmit(client);
-            SubmitChanges();
-        }
-
-        public void UpdateClient(int id_client, string full_name, string phone_number, string company)
-        {
-            Client client = Client.Where(c => c.id_client == id_client).FirstOrDefault();
-            client.full_name = full_name;
-            client.phone_number = phone_number;
-            client.company = company;
-            SubmitChanges();
-        }
-
-        public void DelClient(int id_client)
-        {
-            Client client = Client.Where(cl => cl.id_client == id_client).FirstOrDefault();
-            Client.DeleteOnSubmit(client);
-            SubmitChanges();
-        }
-
-        public List<Client> ShowClient()
-        {
-            return Client.Where(c => c.id_client >= 0).ToList();
-        }
-
-        ////////////////////////////////car
-        public void AddCar(string number, string brand, decimal carrying_capacity,
-            decimal width, decimal heigth, bool status)
-        {
-            Car car = new Car();
-            car.number = number;
-            car.brand = brand;
-            car.carrying_capacity = carrying_capacity;
-            car.width = width;
-            car.heigth = heigth;
-            car.status = status;
-            Car.InsertOnSubmit(car);
-            SubmitChanges();
-        }
-
-
-        public void UpdateCar(int id_car, string number, string brand, decimal carrying_capacity,
-           decimal width, decimal heigth, bool status)
-        {
-            Car car = Car.Where(c => c.id_car == id_car).FirstOrDefault();
-            car.number = number;
-            car.brand = brand;
-            car.carrying_capacity = carrying_capacity;
-            car.width = width;
-            car.heigth = heigth;
-            car.status = status;
-            SubmitChanges();
-        }
-
-        public void DelCar(int id_car)
-        {
-            Car car = Car.Where(c => c.id_car == id_car).FirstOrDefault();
-            Car.DeleteOnSubmit(car);
-            SubmitChanges();
-        }
-        
-        public List<Car> ShowCar()
-        {
-            return Car.Where(c => c.id_car >= 0).ToList();
-        }
-
-        //////////////////////////////driver
-        public void AddDriver(string full_name, string phone_number, DateTime date_of_birth,
-            string passport_number,string adress,bool status)
-        {
-            Driver driver = new Driver();
-            driver.full_name = full_name;
-            driver.phone_number = phone_number;
-            driver.date_of_birth = date_of_birth;
-            driver.passport_number = passport_number;
-            driver.adress = adress;
-            driver.status = status;
-            Driver.InsertOnSubmit(driver);
-            SubmitChanges();
-        }
-        
-        public void UpdateDriver(int id_driver, string full_name, string phone_number, DateTime date_of_birth,
-            string passport_number, string adress, bool status)
-        {
-            Driver driver = Driver.Where(d => d.id_driver == id_driver).FirstOrDefault();
-            driver.full_name = full_name;
-            driver.phone_number = phone_number;
-            driver.date_of_birth = date_of_birth;
-            driver.passport_number = passport_number;
-            driver.adress = adress;
-            driver.status = status;
-            SubmitChanges();
-        }
-
-        public void DelDriver(int id_driver)
-        {
-            Driver driver = Driver.Where(d => d.id_driver == id_driver).FirstOrDefault();
-            Driver.DeleteOnSubmit(driver);
-            SubmitChanges();
-        }
-
-        public List<Driver> ShowDriver()
-        {
-            return Driver.Where(d => d.id_driver >= 0).ToList();
-        }
-
-        ////////////////////////////order
-        public void AddOrder(int id_driver, int id_car, int id_client,
-            string point_of_departure, string point_of_arrival, decimal weight,
-            decimal width, decimal height, string type_cargo, DateTime reg_date, decimal cost, decimal paid)
-        {
-            Order order = new Order();
-            order.id_driver = id_driver;
-            order.id_car = id_car;
-            order.id_client = id_client;
-            order.point_of_departure = point_of_departure;
-            order.point_of_arrival = point_of_arrival;
-            order.weight = weight;
-            order.width = width;
-            order.height = height;
-            order.type_cargo = type_cargo;
-            order.reg_date = reg_date;
-            order.cost = cost;
-            order.paid = paid;
-            Order.InsertOnSubmit(order);
-            SubmitChanges();
-        }
-
-        public void UpdateOrder(int id_order, int id_driver, int id_car, int id_client, 
-            string point_of_departure, string point_of_arrival, decimal weight, 
-            decimal width, decimal height, string type_cargo, DateTime reg_date, decimal cost, decimal paid)
-        {
-            Order order = Order.Where(d => d.id_driver == id_order).FirstOrDefault();
-
-            order.id_driver = id_driver;
-            order.id_car = id_car;
-            order.id_client = id_client;
-            order.point_of_departure = point_of_departure;
-            order.point_of_arrival = point_of_arrival;
-            order.weight = weight;
-            order.width = width;
-            order.height = height;
-            order.type_cargo = type_cargo;
-            order.reg_date = reg_date;
-            order.cost = cost;
-            order.paid = paid;
-            SubmitChanges();
-        }
-
-        public void DelOrder(int id_order)
-        {
-            Order order = Order.Where(o => o.id_order == id_order).FirstOrDefault();
-            Order.DeleteOnSubmit(order);
-            SubmitChanges();
-        }
-
-        public List<Order> ShowOrder()
-        {
-            return Order.Where(o => o.id_order >= 0).ToList();
-        }
-
-
-        //////////////////////////profit_driver
-
-
-
-
-
-    }
-
-    [global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Car")]
+		
+		public System.Data.Linq.Table<Client1> Client1
+		{
+			get
+			{
+				return this.GetTable<Client1>();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Car")]
 	public partial class Car : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
@@ -526,184 +350,7 @@ namespace curs._1
 			this.SendPropertyChanging();
 			entity.Car = null;
 		}
-
-        public override string ToString()
-        {
-            return number + " || " + brand + " || " + carrying_capacity + " || " + width
-                + " || " + heigth + " || " + status;
-        }
-    }
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Client")]
-	public partial class Client : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _id_client;
-		
-		private string _full_name;
-		
-		private string _phone_number;
-		
-		private string _company;
-		
-		private EntitySet<Order> _Order;
-		
-    #region Определения метода расширяемости
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void Onid_clientChanging(int value);
-    partial void Onid_clientChanged();
-    partial void Onfull_nameChanging(string value);
-    partial void Onfull_nameChanged();
-    partial void Onphone_numberChanging(string value);
-    partial void Onphone_numberChanged();
-    partial void OncompanyChanging(string value);
-    partial void OncompanyChanged();
-    #endregion
-		
-		public Client()
-		{
-			this._Order = new EntitySet<Order>(new Action<Order>(this.attach_Order), new Action<Order>(this.detach_Order));
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id_client", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int id_client
-		{
-			get
-			{
-				return this._id_client;
-			}
-			set
-			{
-				if ((this._id_client != value))
-				{
-					this.Onid_clientChanging(value);
-					this.SendPropertyChanging();
-					this._id_client = value;
-					this.SendPropertyChanged("id_client");
-					this.Onid_clientChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_full_name", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
-		public string full_name
-		{
-			get
-			{
-				return this._full_name;
-			}
-			set
-			{
-				if ((this._full_name != value))
-				{
-					this.Onfull_nameChanging(value);
-					this.SendPropertyChanging();
-					this._full_name = value;
-					this.SendPropertyChanged("full_name");
-					this.Onfull_nameChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_phone_number", DbType="VarChar(11) NOT NULL", CanBeNull=false)]
-		public string phone_number
-		{
-			get
-			{
-				return this._phone_number;
-			}
-			set
-			{
-				if ((this._phone_number != value))
-				{
-					this.Onphone_numberChanging(value);
-					this.SendPropertyChanging();
-					this._phone_number = value;
-					this.SendPropertyChanged("phone_number");
-					this.Onphone_numberChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_company", DbType="VarChar(30)")]
-		public string company
-		{
-			get
-			{
-				return this._company;
-			}
-			set
-			{
-				if ((this._company != value))
-				{
-					this.OncompanyChanging(value);
-					this.SendPropertyChanging();
-					this._company = value;
-					this.SendPropertyChanged("company");
-					this.OncompanyChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Client_Order", Storage="_Order", ThisKey="id_client", OtherKey="id_client")]
-		public EntitySet<Order> Order
-		{
-			get
-			{
-				return this._Order;
-			}
-			set
-			{
-				this._Order.Assign(value);
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_Order(Order entity)
-		{
-			this.SendPropertyChanging();
-			entity.Client = this;
-		}
-		
-		private void detach_Order(Order entity)
-		{
-			this.SendPropertyChanging();
-			entity.Client = null;
-		}
-
-        public override string ToString()
-        {
-            if (company != null)
-            {
-                return full_name + " || " + phone_number + " || " + company;
-            }
-            return full_name + " || " + phone_number;
-        }
-    }
+	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Driver")]
 	public partial class Driver : INotifyPropertyChanging, INotifyPropertyChanged
@@ -937,16 +584,9 @@ namespace curs._1
 			this.SendPropertyChanging();
 			entity.Driver = null;
 		}
-
-
-        public override string ToString()
-        {
-            return full_name + " || " + phone_number + " || " + date_of_birth.Date + " || " +
-                passport_number + " || " + adress + " || " + status;
-        }
-    }
-
-    [global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.[Order]")]
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.[Order]")]
 	public partial class Order : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
@@ -982,9 +622,9 @@ namespace curs._1
 		
 		private EntityRef<Car> _Car;
 		
-		private EntityRef<Client> _Client;
-		
 		private EntityRef<Driver> _Driver;
+		
+		private EntityRef<Client1> _Client1;
 		
     #region Определения метода расширяемости
     partial void OnLoaded();
@@ -1022,8 +662,8 @@ namespace curs._1
 		{
 			this._Profit_driver = new EntitySet<Profit_driver>(new Action<Profit_driver>(this.attach_Profit_driver), new Action<Profit_driver>(this.detach_Profit_driver));
 			this._Car = default(EntityRef<Car>);
-			this._Client = default(EntityRef<Client>);
 			this._Driver = default(EntityRef<Driver>);
+			this._Client1 = default(EntityRef<Client1>);
 			OnCreated();
 		}
 		
@@ -1106,7 +746,7 @@ namespace curs._1
 			{
 				if ((this._id_client != value))
 				{
-					if (this._Client.HasLoadedOrAssignedValue)
+					if (this._Client1.HasLoadedOrAssignedValue)
 					{
 						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
 					}
@@ -1346,40 +986,6 @@ namespace curs._1
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Client_Order", Storage="_Client", ThisKey="id_client", OtherKey="id_client", IsForeignKey=true, DeleteOnNull=true, DeleteRule="CASCADE")]
-		public Client Client
-		{
-			get
-			{
-				return this._Client.Entity;
-			}
-			set
-			{
-				Client previousValue = this._Client.Entity;
-				if (((previousValue != value) 
-							|| (this._Client.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Client.Entity = null;
-						previousValue.Order.Remove(this);
-					}
-					this._Client.Entity = value;
-					if ((value != null))
-					{
-						value.Order.Add(this);
-						this._id_client = value.id_client;
-					}
-					else
-					{
-						this._id_client = default(int);
-					}
-					this.SendPropertyChanged("Client");
-				}
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Driver_Order", Storage="_Driver", ThisKey="id_driver", OtherKey="id_driver", IsForeignKey=true, DeleteOnNull=true, DeleteRule="CASCADE")]
 		public Driver Driver
 		{
@@ -1410,6 +1016,40 @@ namespace curs._1
 						this._id_driver = default(int);
 					}
 					this.SendPropertyChanged("Driver");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Client1_Order", Storage="_Client1", ThisKey="id_client", OtherKey="id_client", IsForeignKey=true, DeleteOnNull=true, DeleteRule="CASCADE")]
+		public Client1 Client1
+		{
+			get
+			{
+				return this._Client1.Entity;
+			}
+			set
+			{
+				Client1 previousValue = this._Client1.Entity;
+				if (((previousValue != value) 
+							|| (this._Client1.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Client1.Entity = null;
+						previousValue.Order.Remove(this);
+					}
+					this._Client1.Entity = value;
+					if ((value != null))
+					{
+						value.Order.Add(this);
+						this._id_client = value.id_client;
+					}
+					else
+					{
+						this._id_client = default(int);
+					}
+					this.SendPropertyChanged("Client1");
 				}
 			}
 		}
@@ -1445,16 +1085,7 @@ namespace curs._1
 			this.SendPropertyChanging();
 			entity.Order = null;
 		}
-
-
-        public override string ToString()
-        {
-            return point_of_departure + " || " +
-                point_of_arrival + " || " + weight + " || " + width + " || " + height + " || "
-                + type_cargo + " || " + reg_date.Date + " || " + cost + " || " + paid;
-        }
-        
-    }
+	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Profit_driver")]
 	public partial class Profit_driver : INotifyPropertyChanging, INotifyPropertyChanged
@@ -1652,6 +1283,216 @@ namespace curs._1
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Client")]
+	public partial class Client1 : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _id_client;
+		
+		private string _full_name;
+		
+		private string _phone_number;
+		
+		private string _company;
+		
+		private string _login;
+		
+		private string _password;
+		
+		private EntitySet<Order> _Order;
+		
+    #region Определения метода расширяемости
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void Onid_clientChanging(int value);
+    partial void Onid_clientChanged();
+    partial void Onfull_nameChanging(string value);
+    partial void Onfull_nameChanged();
+    partial void Onphone_numberChanging(string value);
+    partial void Onphone_numberChanged();
+    partial void OncompanyChanging(string value);
+    partial void OncompanyChanged();
+    partial void OnloginChanging(string value);
+    partial void OnloginChanged();
+    partial void OnpasswordChanging(string value);
+    partial void OnpasswordChanged();
+    #endregion
+		
+		public Client1()
+		{
+			this._Order = new EntitySet<Order>(new Action<Order>(this.attach_Order), new Action<Order>(this.detach_Order));
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id_client", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int id_client
+		{
+			get
+			{
+				return this._id_client;
+			}
+			set
+			{
+				if ((this._id_client != value))
+				{
+					this.Onid_clientChanging(value);
+					this.SendPropertyChanging();
+					this._id_client = value;
+					this.SendPropertyChanged("id_client");
+					this.Onid_clientChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_full_name", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string full_name
+		{
+			get
+			{
+				return this._full_name;
+			}
+			set
+			{
+				if ((this._full_name != value))
+				{
+					this.Onfull_nameChanging(value);
+					this.SendPropertyChanging();
+					this._full_name = value;
+					this.SendPropertyChanged("full_name");
+					this.Onfull_nameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_phone_number", DbType="VarChar(11) NOT NULL", CanBeNull=false)]
+		public string phone_number
+		{
+			get
+			{
+				return this._phone_number;
+			}
+			set
+			{
+				if ((this._phone_number != value))
+				{
+					this.Onphone_numberChanging(value);
+					this.SendPropertyChanging();
+					this._phone_number = value;
+					this.SendPropertyChanged("phone_number");
+					this.Onphone_numberChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_company", DbType="VarChar(30)")]
+		public string company
+		{
+			get
+			{
+				return this._company;
+			}
+			set
+			{
+				if ((this._company != value))
+				{
+					this.OncompanyChanging(value);
+					this.SendPropertyChanging();
+					this._company = value;
+					this.SendPropertyChanged("company");
+					this.OncompanyChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_login", DbType="VarChar(30)")]
+		public string login
+		{
+			get
+			{
+				return this._login;
+			}
+			set
+			{
+				if ((this._login != value))
+				{
+					this.OnloginChanging(value);
+					this.SendPropertyChanging();
+					this._login = value;
+					this.SendPropertyChanged("login");
+					this.OnloginChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_password", DbType="VarChar(16)")]
+		public string password
+		{
+			get
+			{
+				return this._password;
+			}
+			set
+			{
+				if ((this._password != value))
+				{
+					this.OnpasswordChanging(value);
+					this.SendPropertyChanging();
+					this._password = value;
+					this.SendPropertyChanged("password");
+					this.OnpasswordChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Client1_Order", Storage="_Order", ThisKey="id_client", OtherKey="id_client")]
+		public EntitySet<Order> Order
+		{
+			get
+			{
+				return this._Order;
+			}
+			set
+			{
+				this._Order.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_Order(Order entity)
+		{
+			this.SendPropertyChanging();
+			entity.Client1 = this;
+		}
+		
+		private void detach_Order(Order entity)
+		{
+			this.SendPropertyChanging();
+			entity.Client1 = null;
 		}
 	}
 }
