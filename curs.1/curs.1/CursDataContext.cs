@@ -132,14 +132,6 @@
 //            return Client.Where (c => c.id_client >= 0).ToList();
 //        }
 
-//        public void DelClientt(int id_client)
-//        {
-//            // Car car = Car.Where(c => c.id_car == id_car).FirstOrDefault();
-//            Client client = Client.Where(c => c.id_client == id_client).FirstOrDefault();
-//            Client.DeleteOnSubmit(client);
-//          //  Car.DeleteOnSubmit(car);
-//            dc.SubmitChanges();
-//        }
 
 
 //        public void DelDriver(int id_driver)

@@ -14,11 +14,11 @@ namespace curs._1
 
         string brand;
 
-        double carrying_capacity;
+        decimal carrying_capacity;
 
-        double width;
+        decimal width;
 
-        double heigth;
+        decimal heigth;
 
         bool status = true;
 
@@ -37,19 +37,9 @@ namespace curs._1
 
                 f_red = new FRedactCar();
 
-                f_red.ShowDialog();
+                FillFields();
 
-                 number = f_red.textBox1.Text;
-
-                 brand = f_red.textBox2.Text;
-
-                 carrying_capacity = Convert.ToInt32(f_red.textBox3.Text);
-
-                 width = Convert.ToInt32(f_red.textBox4.Text);
-
-                 heigth = Convert.ToInt32(f_red.textBox5.Text);
-
-                //db.AddCar(number, brand, carrying_capacity, width, heigth, status);
+                db.AddCar(number, brand, carrying_capacity, width, heigth, status);
 
                 showbd();
 
@@ -68,20 +58,9 @@ namespace curs._1
 
                 f_red = new FRedactCar(car);
 
-                f_red.ShowDialog();
-                //
+                FillFields();
 
-                number = f_red.textBox1.Text;
-
-                brand = f_red.textBox2.Text;
-
-                carrying_capacity = Convert.ToInt32(f_red.textBox3.Text);
-
-                width = Convert.ToInt32(f_red.textBox4.Text);
-
-                heigth = Convert.ToInt32(f_red.textBox5.Text);
-
-                //dc.UpdateCar(car.id_car, number, brand, carrying_capacity, width, heigth, status);
+                db.UpdateCar(car.id_car, number, brand, carrying_capacity, width, heigth, status);
 
                 showbd();
             }
@@ -95,8 +74,8 @@ namespace curs._1
         {
             try
             {
-                 id_car = (listBox1.SelectedItem as Car).id_car;
-                //dc.DelCar(4);
+                id_car = (listBox1.SelectedItem as Car).id_car;
+                db.DelCar(id_car);
                 showbd();
             }
             catch (Exception ex)
@@ -110,11 +89,10 @@ namespace curs._1
             try
             {
                 listBox1.Items.Clear();
-                //var cars = dc.ShowCar();
-                //foreach(var v in cars)
-                //{
-                //    listBox1.Items.Add(v);
-                //}
+                foreach ( var v in db.ShowCar() )
+                {
+                    listBox1.Items.Add(v);
+                }
             }
             catch (Exception ex)
             {
@@ -122,8 +100,21 @@ namespace curs._1
             }
         }
 
-        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        void  FillFields()
         {
+            f_red.ShowDialog();
+
+            number = f_red.textBox1.Text;
+
+            brand = f_red.textBox2.Text;
+
+            carrying_capacity = Convert.ToDecimal(f_red.textBox3.Text);
+
+            width = Convert.ToDecimal(f_red.textBox4.Text);
+
+            heigth = Convert.ToDecimal(f_red.textBox5.Text);
+
+            status = f_red.checkBox1.Checked;
 
         }
     }

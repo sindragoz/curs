@@ -17,7 +17,8 @@ namespace curs._1
 
         FRedactClient f_red;
 
-        
+         int id_client;
+
          string full_name;
 
          string phone_number;
@@ -37,13 +38,7 @@ namespace curs._1
             {
                 f_red = new FRedactClient();
 
-                f_red.ShowDialog();
-
-                full_name = f_red.textBox1.Text; 
-
-                phone_number = f_red.textBox2.Text; 
-
-                company = f_red.textBox3.Text; 
+                FillFields();
 
                 db.AddClient(full_name, phone_number, company);
 
@@ -59,7 +54,8 @@ namespace curs._1
         {
             try
             {
-                db.DelClient((listBox1.SelectedItem as Client).id_client);
+                id_client = (listBox1.SelectedItem as Client).id_client;
+                db.DelClient(id_client);
                 showbd();
 
             }
@@ -77,13 +73,7 @@ namespace curs._1
 
                 Client client = (listBox1.SelectedItem as Client);
 
-                f_red.ShowDialog();
-
-                full_name = f_red.textBox1.Text;
-
-                phone_number = f_red.textBox2.Text;
-
-                company = f_red.textBox3.Text;
+                FillFields();
 
                 db.UpdateClient(client.id_client, full_name, phone_number, company);
 
@@ -101,8 +91,7 @@ namespace curs._1
             try
             {
                 listBox1.Items.Clear();
-                var clients = db.ShowClient();
-                foreach (var v in clients)
+                foreach ( var v in db.ShowClient() )
                 {
                     listBox1.Items.Add(v);
                 }
@@ -112,5 +101,17 @@ namespace curs._1
                 MessageBox.Show(ex.Message);
             }
         }
+
+        void FillFields()
+        {
+            f_red.ShowDialog();
+
+            full_name = f_red.textBox1.Text;
+
+            phone_number = f_red.textBox2.Text;
+
+            company = f_red.textBox3.Text;
+        }
+
     }
 }

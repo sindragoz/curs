@@ -148,6 +148,47 @@ namespace curs._1
         {
             return Client.Where(c => c.id_client >= 0).ToList();
         }
+
+
+        public void AddCar(string number, string brand, decimal carrying_capacity,
+            decimal width, decimal heigth, bool status)
+        {
+            Car car = new Car();
+            car.number = number;
+            car.brand = brand;
+            car.carrying_capacity = carrying_capacity;
+            car.width = width;
+            car.heigth = heigth;
+            car.status = status;
+            Car.InsertOnSubmit(car);
+            SubmitChanges();
+        }
+
+
+        public void UpdateCar(int id_car, string number, string brand, decimal carrying_capacity,
+           decimal width, decimal heigth, bool status)
+        {
+            Car car = Car.Where(c => c.id_car == id_car).FirstOrDefault();
+            car.number = number;
+            car.brand = brand;
+            car.carrying_capacity = carrying_capacity;
+            car.width = width;
+            car.heigth = heigth;
+            car.status = status;
+            SubmitChanges();
+        }
+
+        public void DelCar(int id_car)
+        {
+            Car car = Car.Where(c => c.id_car == id_car).FirstOrDefault();
+            Car.DeleteOnSubmit(car);
+            SubmitChanges();
+        }
+        
+        public List<Car> ShowCar()
+        {
+            return Car.Where(c => c.id_car >= 0).ToList();
+        }
     }
 
     [global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Car")]
@@ -382,7 +423,13 @@ namespace curs._1
 			this.SendPropertyChanging();
 			entity.Car = null;
 		}
-	}
+
+        public override string ToString()
+        {
+            return number + " || " + brand + " || " + carrying_capacity + " || " + width
+                + " || " + heigth + " || " + status;
+        }
+    }
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Client")]
 	public partial class Client : INotifyPropertyChanging, INotifyPropertyChanged

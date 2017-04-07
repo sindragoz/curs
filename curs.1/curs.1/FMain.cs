@@ -24,8 +24,8 @@ namespace curs._1
 
         private void button5_Click(object sender, EventArgs e)
         {
-            //FCar fc = new FCar(dc);
-            //fc.ShowDialog();
+            FCar fc = new FCar(db);
+            fc.ShowDialog();
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -36,8 +36,8 @@ namespace curs._1
 
         private void button2_Click(object sender, EventArgs e)
         {
-            //FDriver fd = new FDriver(dc);
-            //fd.ShowDialog();
+            //FDriver fd = new FDriver(db);
+           // fd.ShowDialog();
         }
     }
 }
