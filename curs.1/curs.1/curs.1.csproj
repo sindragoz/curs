@@ -50,11 +50,6 @@
     <Compile Include="Car.cs" />
     <Compile Include="Client.cs" />
     <Compile Include="CursDataContext.cs" />
-    <Compile Include="BD.designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>BD.dbml</DependentUpon>
-    </Compile>
     <Compile Include="Driver.cs" />
     <Compile Include="FCar.cs">
       <SubType>Form</SubType>
@@ -67,12 +62,6 @@
     </Compile>
     <Compile Include="FClient.Designer.cs">
       <DependentUpon>FClient.cs</DependentUpon>
-    </Compile>
-    <Compile Include="FDriver.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FDriver.Designer.cs">
-      <DependentUpon>FDriver.cs</DependentUpon>
     </Compile>
     <Compile Include="FMain.cs">
       <SubType>Form</SubType>
@@ -96,17 +85,11 @@
     <Compile Include="Profit_driver.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <None Include="BD.dbml.layout">
-      <DependentUpon>BD.dbml</DependentUpon>
-    </None>
     <EmbeddedResource Include="FCar.resx">
       <DependentUpon>FCar.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FClient.resx">
       <DependentUpon>FClient.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FDriver.resx">
-      <DependentUpon>FDriver.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FMain.resx">
       <DependentUpon>FMain.cs</DependentUpon>
@@ -126,11 +109,6 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <None Include="BD.dbml">
-      <Generator>MSLinqToSQLGenerator</Generator>
-      <LastGenOutput>BD.designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
