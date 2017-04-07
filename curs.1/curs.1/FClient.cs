@@ -69,9 +69,9 @@ namespace curs._1
         {
             try
             {
-                f_red = new FRedactClient();
-
                 Client client = (listBox1.SelectedItem as Client);
+
+                f_red = new FRedactClient(client);
 
                 FillFields();
 

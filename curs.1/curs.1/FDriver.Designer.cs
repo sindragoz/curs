@@ -30,7 +30,8 @@
         {
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.btnDelete = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
+            this.btnAdd = new System.Windows.Forms.Button();
+            this.Update = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // listBox1
@@ -38,12 +39,12 @@
             this.listBox1.FormattingEnabled = true;
             this.listBox1.Location = new System.Drawing.Point(132, 12);
             this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(288, 394);
+            this.listBox1.Size = new System.Drawing.Size(405, 394);
             this.listBox1.TabIndex = 6;
             // 
             // btnDelete
             // 
-            this.btnDelete.Location = new System.Drawing.Point(19, 76);
+            this.btnDelete.Location = new System.Drawing.Point(12, 100);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(75, 40);
             this.btnDelete.TabIndex = 5;
@@ -51,27 +52,38 @@
             this.btnDelete.UseVisualStyleBackColor = true;
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
-            // label1
+            // btnAdd
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(21, 178);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(35, 13);
-            this.label1.TabIndex = 7;
-            this.label1.Text = "label1";
+            this.btnAdd.Location = new System.Drawing.Point(12, 37);
+            this.btnAdd.Name = "btnAdd";
+            this.btnAdd.Size = new System.Drawing.Size(75, 41);
+            this.btnAdd.TabIndex = 7;
+            this.btnAdd.Text = "Add";
+            this.btnAdd.UseVisualStyleBackColor = true;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
+            // 
+            // Update
+            // 
+            this.Update.Location = new System.Drawing.Point(12, 160);
+            this.Update.Name = "Update";
+            this.Update.Size = new System.Drawing.Size(75, 38);
+            this.Update.TabIndex = 8;
+            this.Update.Text = "update";
+            this.Update.UseVisualStyleBackColor = true;
+            this.Update.Click += new System.EventHandler(this.Update_Click);
             // 
             // FDriver
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(476, 450);
-            this.Controls.Add(this.label1);
+            this.ClientSize = new System.Drawing.Size(549, 450);
+            this.Controls.Add(this.Update);
+            this.Controls.Add(this.btnAdd);
             this.Controls.Add(this.listBox1);
             this.Controls.Add(this.btnDelete);
             this.Name = "FDriver";
             this.Text = "FDriver";
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -79,6 +91,7 @@
 
         private System.Windows.Forms.ListBox listBox1;
         private System.Windows.Forms.Button btnDelete;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button btnAdd;
+        private System.Windows.Forms.Button Update;
     }
 }

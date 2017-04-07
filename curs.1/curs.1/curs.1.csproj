@@ -89,6 +89,12 @@
     <Compile Include="FRedactClient.Designer.cs">
       <DependentUpon>FRedactClient.cs</DependentUpon>
     </Compile>
+    <Compile Include="FRedactDriver.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FRedactDriver.Designer.cs">
+      <DependentUpon>FRedactDriver.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <None Include="DB.dbml.layout">
@@ -111,6 +117,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FRedactClient.resx">
       <DependentUpon>FRedactClient.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FRedactDriver.resx">
+      <DependentUpon>FRedactDriver.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

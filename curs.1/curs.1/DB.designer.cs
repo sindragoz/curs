@@ -117,7 +117,7 @@ namespace curs._1
 			}
 		}
 
-
+        ////////////////////////////////client
         public void AddClient(string full_name, string phone_number, string company)
         {
             Client client = new Client();
@@ -149,7 +149,7 @@ namespace curs._1
             return Client.Where(c => c.id_client >= 0).ToList();
         }
 
-
+        ////////////////////////////////car
         public void AddCar(string number, string brand, decimal carrying_capacity,
             decimal width, decimal heigth, bool status)
         {
@@ -189,6 +189,47 @@ namespace curs._1
         {
             return Car.Where(c => c.id_car >= 0).ToList();
         }
+
+        //////////////////////////////driver
+        public void AddDriver(string full_name, string phone_number, DateTime date_of_birth,
+            string passport_number,string adress,bool status)
+        {
+            Driver driver = new Driver();
+            driver.full_name = full_name;
+            driver.phone_number = phone_number;
+            driver.date_of_birth = date_of_birth;
+            driver.passport_number = passport_number;
+            driver.adress = adress;
+            driver.status = status;
+            Driver.InsertOnSubmit(driver);
+            SubmitChanges();
+        }
+        
+        public void UpdateDriver(int id_driver, string full_name, string phone_number, DateTime date_of_birth,
+            string passport_number, string adress, bool status)
+        {
+            Driver driver = Driver.Where(d => d.id_driver == id_driver).FirstOrDefault();
+            driver.full_name = full_name;
+            driver.phone_number = phone_number;
+            driver.date_of_birth = date_of_birth;
+            driver.passport_number = passport_number;
+            driver.adress = adress;
+            driver.status = status;
+            SubmitChanges();
+        }
+
+        public void DelDriver(int id_driver)
+        {
+            Driver driver = Driver.Where(d => d.id_driver == id_driver).FirstOrDefault();
+            Driver.DeleteOnSubmit(driver);
+            SubmitChanges();
+        }
+
+        public List<Driver> ShowDriver()
+        {
+            return Driver.Where(c => c.id_driver >= 0).ToList();
+        }
+
     }
 
     [global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Car")]
@@ -834,9 +875,16 @@ namespace curs._1
 			this.SendPropertyChanging();
 			entity.Driver = null;
 		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.[Order]")]
+
+
+        public override string ToString()
+        {
+            return full_name + " || " + phone_number + " || " + date_of_birth.Date + " || " +
+                passport_number + " || " + adress + " || " + status;
+        }
+    }
+
+    [global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.[Order]")]
 	public partial class Order : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		

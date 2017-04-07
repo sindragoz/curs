@@ -10,19 +10,29 @@ using System.Windows.Forms;
 
 namespace curs._1
 {
-    public partial class FRedactClient : Form
+    public partial class FRedactDriver : Form
     {
-        public FRedactClient()
+
+        public FRedactDriver()
         {
             InitializeComponent();
         }
 
-        public FRedactClient(Client client)
+        public FRedactDriver(Driver driver)
         {
             InitializeComponent();
-            textBox1.Text = client.full_name;
-            textBox2.Text = client.phone_number;
-            textBox3.Text = client.company;
+
+             textBox1.Text= driver.full_name;
+
+            textBox2.Text = driver.phone_number;
+
+            textBox3.Text = driver.date_of_birth.ToString();
+
+            textBox4.Text = driver.passport_number;
+
+            textBox5.Text = driver.adress;
+
+            checkBox1.Checked = driver.status;
         }
 
         private void button1_Click(object sender, EventArgs e)
