@@ -5,8 +5,7 @@ namespace curs._1
 {
     public partial class FMain : Form
     {
-        //  CursDataContext dc;
-        DB d;
+        DB db;
         public FMain()
         {
             InitializeComponent();
@@ -18,19 +17,18 @@ namespace curs._1
             //string connectionString = @"Data Source =.\SQLEXPRESS;" + 
             //    @"AttachDbFilename = |DataDirectory|\curs.mdf; Integrated Security = True";
             string connectionString = @"Data Source=.\SQLEXPRESS;Initial Catalog=curs;Integrated Security=True;Pooling=False";
-            //   dc = new CursDataContext(connectionString);
-            d = new DB(connectionString);
+            db = new DB(connectionString);
         }
 
         private void button5_Click(object sender, EventArgs e)
         {
-            //FCar fc = new FCar(dc);
-            //fc.ShowDialog();
+            FCar fc = new FCar(db);
+            fc.ShowDialog();
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            FClient fc = new FClient(d);
+            FClient fc = new FClient(db);
             fc.ShowDialog();
         }
 
