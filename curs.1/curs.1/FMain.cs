@@ -6,7 +6,7 @@ namespace curs._1
     public partial class FMain : Form
     {
         //  CursDataContext dc;
-        DataClasses1DataContext d;
+        DB d;
         public FMain()
         {
             InitializeComponent();
@@ -19,7 +19,7 @@ namespace curs._1
             //    @"AttachDbFilename = |DataDirectory|\curs.mdf; Integrated Security = True";
             string connectionString = @"Data Source=.\SQLEXPRESS;Initial Catalog=curs;Integrated Security=True;Pooling=False";
             //   dc = new CursDataContext(connectionString);
-            d = new DataClasses1DataContext(connectionString);
+            d = new DB(connectionString);
         }
 
         private void button5_Click(object sender, EventArgs e)

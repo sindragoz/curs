@@ -21,61 +21,18 @@ namespace curs._1
 	
 	
 	[Database(Name="curs")]
-	public partial class DataClasses1DataContext : System.Data.Linq.DataContext
-	{
+	public partial class DB : DataContext
+    {
 		
-		private static System.Data.Linq.Mapping.MappingSource mappingSource = new AttributeMappingSource();
+		private static MappingSource mappingSource = new AttributeMappingSource();
 		
-    #region Определения метода расширяемости
-    partial void OnCreated();
-    partial void InsertCar(Car instance);
-    partial void UpdateCar(Car instance);
-    partial void DeleteCar(Car instance);
-    partial void InsertClient(Client instance);
-    partial void UpdateClient(Client instance);
-    partial void DeleteClient(Client instance);
-    partial void InsertDriver(Driver instance);
-    partial void UpdateDriver(Driver instance);
-    partial void DeleteDriver(Driver instance);
-    partial void InsertOrder(Order instance);
-    partial void UpdateOrder(Order instance);
-    partial void DeleteOrder(Order instance);
-    partial void InsertProfit_driver(Profit_driver instance);
-    partial void UpdateProfit_driver(Profit_driver instance);
-    partial void DeleteProfit_driver(Profit_driver instance);
-    #endregion
-		
-		public DataClasses1DataContext() : 
-				base(global::curs._1.Properties.Settings.Default.cursConnectionString, mappingSource)
-		{
-			OnCreated();
-		}
-		
-		public DataClasses1DataContext(string connection) : 
+		public DB(string connection) : 
 				base(connection, mappingSource)
 		{
-			OnCreated();
+			
 		}
 		
-		public DataClasses1DataContext(System.Data.IDbConnection connection) : 
-				base(connection, mappingSource)
-		{
-			OnCreated();
-		}
-		
-		public DataClasses1DataContext(string connection, System.Data.Linq.Mapping.MappingSource mappingSource) : 
-				base(connection, mappingSource)
-		{
-			OnCreated();
-		}
-		
-		public DataClasses1DataContext(System.Data.IDbConnection connection, System.Data.Linq.Mapping.MappingSource mappingSource) : 
-				base(connection, mappingSource)
-		{
-			OnCreated();
-		}
-		
-		public System.Data.Linq.Table<Car> Car
+		public Table<Car> Car
 		{
 			get
 			{
@@ -83,7 +40,7 @@ namespace curs._1
 			}
 		}
 		
-		public System.Data.Linq.Table<Client> Client
+		public Table<Client> Client
 		{
 			get
 			{
@@ -91,7 +48,7 @@ namespace curs._1
 			}
 		}
 		
-		public System.Data.Linq.Table<Driver> Driver
+		public Table<Driver> Driver
 		{
 			get
 			{
@@ -99,7 +56,7 @@ namespace curs._1
 			}
 		}
 		
-		public System.Data.Linq.Table<Order> Order
+		public Table<Order> Order
 		{
 			get
 			{
@@ -107,7 +64,7 @@ namespace curs._1
 			}
 		}
 		
-		public System.Data.Linq.Table<Profit_driver> Profit_driver
+		public Table<Profit_driver> Profit_driver
 		{
 			get
 			{
@@ -560,7 +517,7 @@ namespace curs._1
         }
     }
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Driver")]
+	[Table(Name="dbo.Driver")]
 	public partial class Driver : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
@@ -794,7 +751,7 @@ namespace curs._1
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.[Order]")]
+	[Table(Name="dbo.[Order]")]
 	public partial class Order : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
@@ -1295,7 +1252,7 @@ namespace curs._1
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Profit_driver")]
+	[Table(Name="dbo.Profit_driver")]
 	public partial class Profit_driver : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		

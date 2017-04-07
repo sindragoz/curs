@@ -13,7 +13,7 @@ namespace curs._1
     
     public partial class FClient : Form
     {
-        DataClasses1DataContext dc;
+        DB dc;
 
         FRedactClient f_red;
 
@@ -25,7 +25,7 @@ namespace curs._1
 
          string company;
 
-        public FClient(DataClasses1DataContext dc)
+        public FClient(DB dc)
         {
             InitializeComponent();
             this.dc = dc;
