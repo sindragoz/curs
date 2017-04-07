@@ -13,22 +13,21 @@ namespace curs._1
     
     public partial class FClient : Form
     {
-        DB dc;
+        DBDataContext db;
 
         FRedactClient f_red;
 
-        int id_client;
-
+        
          string full_name;
 
          string phone_number;
 
          string company;
 
-        public FClient(DB dc)
+        public FClient(DBDataContext db)
         {
             InitializeComponent();
-            this.dc = dc;
+            this.db = db;
             showbd();
         }
 
@@ -46,11 +45,7 @@ namespace curs._1
 
                 company = f_red.textBox3.Text; 
 
-                if(company == "")
-                    dc.AddClient(full_name, phone_number);
-                else
-                    dc.AddClient(full_name, phone_number, company);
-                
+                db.AddClient(full_name, phone_number, company);
 
                 showbd();
             }
@@ -59,7 +54,20 @@ namespace curs._1
                 MessageBox.Show(ex.Message);
             }
         }
-        
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                db.DelClient((listBox1.SelectedItem as Client).id_client);
+                showbd();
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
 
         private void Update_Click(object sender, EventArgs e)
         {
@@ -77,7 +85,7 @@ namespace curs._1
 
                 company = f_red.textBox3.Text;
 
-                dc.UpdateClient(client.id_client, full_name, phone_number, company);
+                db.UpdateClient(client.id_client, full_name, phone_number, company);
 
                 showbd();
             }
@@ -88,27 +96,12 @@ namespace curs._1
             
         }
 
-        private void btnDelete_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                id_client = (listBox1.SelectedItem as Client).id_client;
-                dc.DelClient(id_client);
-                showbd();
-
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-        }
-
         void showbd()
         {
             try
             {
                 listBox1.Items.Clear();
-                var clients = dc.ShowClient();
+                var clients = db.ShowClient();
                 foreach (var v in clients)
                 {
                     listBox1.Items.Add(v);

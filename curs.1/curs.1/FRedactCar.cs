@@ -25,7 +25,6 @@ namespace curs._1
             textBox3.Text = car.carrying_capacity.ToString();
             textBox4.Text = car.width.ToString();
             textBox5.Text = car.heigth.ToString();
-            checkBox1.Checked = car.status;
         }
 
         private void button1_Click(object sender, EventArgs e)
