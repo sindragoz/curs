@@ -40,7 +40,7 @@ namespace curs._1
 
                 Fill();
 
-                db.AddCar(number, brand, carrying_capacity, width, heigth, status);
+               // db.AddCar(number, brand, carrying_capacity, width, heigth, status);
 
                 showbd();
 
@@ -61,7 +61,7 @@ namespace curs._1
 
                 Fill();
 
-                db.UpdateCar(car.id_car, number, brand, carrying_capacity, width, heigth, status);
+               // db.UpdateCar(car.id_car, number, brand, carrying_capacity, width, heigth, status);
 
                 showbd();
 
@@ -76,7 +76,7 @@ namespace curs._1
         {
             try
             {
-                 db.DelCar((listBox1.SelectedItem as Car).id_car);
+                // db.DelCar((listBox1.SelectedItem as Car).id_car);
                  showbd();
             }
             catch (Exception ex)
@@ -90,11 +90,11 @@ namespace curs._1
             try
             {
                 listBox1.Items.Clear();
-                var cars = db.ShowCar();
-                foreach (var v in cars)
-                {
-                    listBox1.Items.Add(v);
-                }
+                //var cars = db.ShowCar();
+                //foreach (var v in cars)
+                //{
+                //    listBox1.Items.Add(v);
+                //}
             }
             catch (Exception ex)
             {
