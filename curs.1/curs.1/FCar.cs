@@ -76,8 +76,7 @@ namespace curs._1
         {
             try
             {
-                 id_car = (listBox1.SelectedItem as Car).id_car;
-
+                 db.DelCar((listBox1.SelectedItem as Car).id_car);
                  showbd();
             }
             catch (Exception ex)
