@@ -108,17 +108,185 @@ namespace curs._1
 				return this.GetTable<Profit_driver>();
 			}
 		}
-		
-		public System.Data.Linq.Table<Client1> Client1
-		{
-			get
-			{
-				return this.GetTable<Client1>();
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Car")]
+
+        ////////////////////////////////client
+        public void AddClient(string full_name, string phone_number, string company)
+        {
+            Client client = new Client();
+            client.full_name = full_name;
+            client.phone_number = phone_number;
+            client.company = company;
+            Client.InsertOnSubmit(client);
+            SubmitChanges();
+        }
+
+        public void UpdateClient(int id_client, string full_name, string phone_number, string company)
+        {
+            Client client = Client.Where(c => c.id_client == id_client).FirstOrDefault();
+            client.full_name = full_name;
+            client.phone_number = phone_number;
+            client.company = company;
+            SubmitChanges();
+        }
+
+        public void DelClient(int id_client)
+        {
+            Client client = Client.Where(cl => cl.id_client == id_client).FirstOrDefault();
+            Client.DeleteOnSubmit(client);
+            SubmitChanges();
+        }
+
+        public List<Client> ShowClient()
+        {
+            return Client.Where(c => c.id_client >= 0).ToList();
+        }
+
+        ////////////////////////////////car
+        public void AddCar(string number, string brand, decimal carrying_capacity,
+            decimal width, decimal heigth, bool status)
+        {
+            Car car = new Car();
+            car.number = number;
+            car.brand = brand;
+            car.carrying_capacity = carrying_capacity;
+            car.width = width;
+            car.heigth = heigth;
+            car.status = status;
+            Car.InsertOnSubmit(car);
+            SubmitChanges();
+        }
+
+
+        public void UpdateCar(int id_car, string number, string brand, decimal carrying_capacity,
+           decimal width, decimal heigth, bool status)
+        {
+            Car car = Car.Where(c => c.id_car == id_car).FirstOrDefault();
+            car.number = number;
+            car.brand = brand;
+            car.carrying_capacity = carrying_capacity;
+            car.width = width;
+            car.heigth = heigth;
+            car.status = status;
+            SubmitChanges();
+        }
+
+        public void DelCar(int id_car)
+        {
+            Car car = Car.Where(c => c.id_car == id_car).FirstOrDefault();
+            Car.DeleteOnSubmit(car);
+            SubmitChanges();
+        }
+        
+        public List<Car> ShowCar()
+        {
+            return Car.Where(c => c.id_car >= 0).ToList();
+        }
+
+        //////////////////////////////driver
+        public void AddDriver(string full_name, string phone_number, DateTime date_of_birth,
+            string passport_number,string adress,bool status)
+        {
+            Driver driver = new Driver();
+            driver.full_name = full_name;
+            driver.phone_number = phone_number;
+            driver.date_of_birth = date_of_birth;
+            driver.passport_number = passport_number;
+            driver.adress = adress;
+            driver.status = status;
+            Driver.InsertOnSubmit(driver);
+            SubmitChanges();
+        }
+        
+        public void UpdateDriver(int id_driver, string full_name, string phone_number, DateTime date_of_birth,
+            string passport_number, string adress, bool status)
+        {
+            Driver driver = Driver.Where(d => d.id_driver == id_driver).FirstOrDefault();
+            driver.full_name = full_name;
+            driver.phone_number = phone_number;
+            driver.date_of_birth = date_of_birth;
+            driver.passport_number = passport_number;
+            driver.adress = adress;
+            driver.status = status;
+            SubmitChanges();
+        }
+
+        public void DelDriver(int id_driver)
+        {
+            Driver driver = Driver.Where(d => d.id_driver == id_driver).FirstOrDefault();
+            Driver.DeleteOnSubmit(driver);
+            SubmitChanges();
+        }
+
+        public List<Driver> ShowDriver()
+        {
+            return Driver.Where(d => d.id_driver >= 0).ToList();
+        }
+
+        ////////////////////////////order
+        public void AddOrder(int id_driver, int id_car, int id_client,
+            string point_of_departure, string point_of_arrival, decimal weight,
+            decimal width, decimal height, string type_cargo, DateTime reg_date, decimal cost, decimal paid)
+        {
+            Order order = new Order();
+            order.id_driver = id_driver;
+            order.id_car = id_car;
+            order.id_client = id_client;
+            order.point_of_departure = point_of_departure;
+            order.point_of_arrival = point_of_arrival;
+            order.weight = weight;
+            order.width = width;
+            order.height = height;
+            order.type_cargo = type_cargo;
+            order.reg_date = reg_date;
+            order.cost = cost;
+            order.paid = paid;
+            Order.InsertOnSubmit(order);
+            SubmitChanges();
+        }
+
+        public void UpdateOrder(int id_order, int id_driver, int id_car, int id_client, 
+            string point_of_departure, string point_of_arrival, decimal weight, 
+            decimal width, decimal height, string type_cargo, DateTime reg_date, decimal cost, decimal paid)
+        {
+            Order order = Order.Where(d => d.id_driver == id_order).FirstOrDefault();
+
+            order.id_driver = id_driver;
+            order.id_car = id_car;
+            order.id_client = id_client;
+            order.point_of_departure = point_of_departure;
+            order.point_of_arrival = point_of_arrival;
+            order.weight = weight;
+            order.width = width;
+            order.height = height;
+            order.type_cargo = type_cargo;
+            order.reg_date = reg_date;
+            order.cost = cost;
+            order.paid = paid;
+            SubmitChanges();
+        }
+
+        public void DelOrder(int id_order)
+        {
+            Order order = Order.Where(o => o.id_order == id_order).FirstOrDefault();
+            Order.DeleteOnSubmit(order);
+            SubmitChanges();
+        }
+
+        public List<Order> ShowOrder()
+        {
+            return Order.Where(o => o.id_order >= 0).ToList();
+        }
+
+
+        //////////////////////////profit_driver
+
+
+
+
+
+    }
+
+    [global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Car")]
 	public partial class Car : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		

@@ -47,6 +47,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CursDataContext.cs" />
     <Compile Include="DB.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -76,12 +77,6 @@
     <Compile Include="FMain.Designer.cs">
       <DependentUpon>FMain.cs</DependentUpon>
     </Compile>
-    <Compile Include="FOrder.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FOrder.Designer.cs">
-      <DependentUpon>FOrder.cs</DependentUpon>
-    </Compile>
     <Compile Include="FRedactCar.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -100,12 +95,6 @@
     <Compile Include="FRedactDriver.Designer.cs">
       <DependentUpon>FRedactDriver.cs</DependentUpon>
     </Compile>
-    <Compile Include="FRedactOrder.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FRedactOrder.Designer.cs">
-      <DependentUpon>FRedactOrder.cs</DependentUpon>
-    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <None Include="DB.dbml.layout">
@@ -123,9 +112,6 @@
     <EmbeddedResource Include="FMain.resx">
       <DependentUpon>FMain.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FOrder.resx">
-      <DependentUpon>FOrder.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="FRedactCar.resx">
       <DependentUpon>FRedactCar.cs</DependentUpon>
     </EmbeddedResource>
@@ -134,9 +120,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FRedactDriver.resx">
       <DependentUpon>FRedactDriver.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FRedactOrder.resx">
-      <DependentUpon>FRedactOrder.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
