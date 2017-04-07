@@ -50,10 +50,10 @@
     <Compile Include="Car.cs" />
     <Compile Include="Client.cs" />
     <Compile Include="CursDataContext.cs" />
-    <Compile Include="DataClasses1.designer.cs">
+    <Compile Include="BD.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>DataClasses1.dbml</DependentUpon>
+      <DependentUpon>BD.dbml</DependentUpon>
     </Compile>
     <Compile Include="Driver.cs" />
     <Compile Include="FCar.cs">
@@ -96,8 +96,8 @@
     <Compile Include="Profit_driver.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <None Include="DataClasses1.dbml.layout">
-      <DependentUpon>DataClasses1.dbml</DependentUpon>
+    <None Include="BD.dbml.layout">
+      <DependentUpon>BD.dbml</DependentUpon>
     </None>
     <EmbeddedResource Include="FCar.resx">
       <DependentUpon>FCar.cs</DependentUpon>
@@ -126,9 +126,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <None Include="DataClasses1.dbml">
+    <None Include="BD.dbml">
       <Generator>MSLinqToSQLGenerator</Generator>
-      <LastGenOutput>DataClasses1.designer.cs</LastGenOutput>
+      <LastGenOutput>BD.designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
     <None Include="Properties\Settings.settings">

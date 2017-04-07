@@ -17,7 +17,8 @@ namespace curs._1
 
         FRedactClient f_red;
 
-        int id
+        int id_client;
+
          string full_name;
 
          string phone_number;
@@ -45,7 +46,11 @@ namespace curs._1
 
                 company = f_red.textBox3.Text; 
 
-                dc.AddClient(full_name, phone_number, company);
+                if(company == "")
+                    dc.AddClient(full_name, phone_number);
+                else
+                    dc.AddClient(full_name, phone_number, company);
+                
 
                 showbd();
             }
@@ -54,20 +59,7 @@ namespace curs._1
                 MessageBox.Show(ex.Message);
             }
         }
-
-        private void btnDelete_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                dc.DelClient((listBox1.SelectedItem as Client).id_client);
-                showbd();
-
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-        }
+        
 
         private void Update_Click(object sender, EventArgs e)
         {
@@ -94,6 +86,21 @@ namespace curs._1
                 MessageBox.Show(ex.Message);
             }
             
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                id_client = (listBox1.SelectedItem as Client).id_client;
+                dc.DelClient(id_client);
+                showbd();
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         void showbd()

@@ -48,7 +48,7 @@ namespace curs._1
                  width = Convert.ToInt32(f_red.textBox4.Text);
 
                  heigth = Convert.ToInt32(f_red.textBox5.Text);
-
+                
                 //dc.AddCar(number, brand, carrying_capacity, width, heigth, status);
 
                 showbd();
@@ -96,7 +96,6 @@ namespace curs._1
             try
             {
                  id_car = (listBox1.SelectedItem as Car).id_car;
-                //dc.DelCar(4);
                 showbd();
             }
             catch (Exception ex)

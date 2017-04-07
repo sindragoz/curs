@@ -15,14 +15,12 @@ namespace curs._1
 	using System.Data.Linq.Mapping;
 	using System.Data;
 	using System.Collections.Generic;
-	using System.Reflection;
 	using System.Linq;
-	using System.Linq.Expressions;
 	using System.ComponentModel;
 	using System;
 	
 	
-	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="curs")]
+	[Database(Name="curs")]
 	public partial class DataClasses1DataContext : System.Data.Linq.DataContext
 	{
 		
@@ -117,12 +115,22 @@ namespace curs._1
 			}
 		}
 
+
         public void AddClient(string full_name, string phone_number, string company)
         {
             Client client = new Client();
             client.full_name = full_name;
             client.phone_number = phone_number;
             client.company = company;
+            Client.InsertOnSubmit(client);
+            SubmitChanges();
+        }
+
+        public void AddClient(string full_name, string phone_number)
+        {
+            Client client = new Client();
+            client.full_name = full_name;
+            client.phone_number = phone_number;
             Client.InsertOnSubmit(client);
             SubmitChanges();
         }
@@ -147,10 +155,9 @@ namespace curs._1
         {
             return Client.Where(c => c.id_client >= 0).ToList();
         }
-
     }
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Car")]
+
+    [Table(Name="dbo.Car")]
 	public partial class Car : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
@@ -384,7 +391,7 @@ namespace curs._1
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Client")]
+	[Table(Name="dbo.Client")]
 	public partial class Client : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
@@ -420,7 +427,7 @@ namespace curs._1
 			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id_client", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		[Column(Storage="_id_client", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
 		public int id_client
 		{
 			get
@@ -440,7 +447,7 @@ namespace curs._1
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_full_name", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		[Column(Storage="_full_name", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
 		public string full_name
 		{
 			get
@@ -460,7 +467,7 @@ namespace curs._1
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_phone_number", DbType="VarChar(11) NOT NULL", CanBeNull=false)]
+		[Column(Storage="_phone_number", DbType="VarChar(11) NOT NULL", CanBeNull=false)]
 		public string phone_number
 		{
 			get
@@ -480,7 +487,7 @@ namespace curs._1
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_company", DbType="VarChar(30) NOT NULL", CanBeNull=false)]
+		[Column(Storage="_company", DbType="VarChar(30) NOT NULL", CanBeNull=false)]
 		public string company
 		{
 			get
@@ -500,7 +507,7 @@ namespace curs._1
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Client_Order", Storage="_Order", ThisKey="id_client", OtherKey="id_client")]
+		[Association(Name="Client_Order", Storage="_Order", ThisKey="id_client", OtherKey="id_client")]
 		public EntitySet<Order> Order
 		{
 			get
@@ -544,7 +551,14 @@ namespace curs._1
 			this.SendPropertyChanging();
 			entity.Client = null;
 		}
-	}
+
+        public override string ToString()
+        {
+            if (company == null)
+                return full_name + "  || " + phone_number + " || ";
+            return full_name + "  || " + phone_number + " || " + company + " || ";
+        }
+    }
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Driver")]
 	public partial class Driver : INotifyPropertyChanging, INotifyPropertyChanged
