@@ -23,6 +23,9 @@ namespace curs._1
             textBox1.Text = client.full_name;
             textBox2.Text = client.phone_number;
             textBox3.Text = client.company;
+            textBox4.Text = client.login;
+            textBox5.Text = client.password;
+            textBox5.Enabled = false;
         }
 
         private void button1_Click(object sender, EventArgs e)

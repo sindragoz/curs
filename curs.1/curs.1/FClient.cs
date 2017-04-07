@@ -25,6 +25,10 @@ namespace curs._1
 
          string company;
 
+        string login;
+
+        string password;
+
         public FClient(DBDataContext db)
         {
             InitializeComponent();
@@ -40,7 +44,7 @@ namespace curs._1
 
                 FillFields();
 
-                db.AddClient(full_name, phone_number, company);
+                db.AddClient(full_name, phone_number, company, login, password);
 
                 showbd();
             }
@@ -75,7 +79,7 @@ namespace curs._1
 
                 FillFields();
 
-                db.UpdateClient(client.id_client, full_name, phone_number, company);
+                db.UpdateClient(client.id_client, full_name, phone_number, company, login, password);
 
                 showbd();
             }
@@ -111,6 +115,10 @@ namespace curs._1
             phone_number = f_red.textBox2.Text;
 
             company = f_red.textBox3.Text;
+
+            login = f_red.textBox4.Text;
+
+            password =  f_red.textBox5.Text;
         }
 
     }
