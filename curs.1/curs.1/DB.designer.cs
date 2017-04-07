@@ -231,36 +231,53 @@ namespace curs._1
         }
 
         ////////////////////////////order
-        public void AddOrder()
+        public void AddOrder(int id_driver, int id_car, int id_client,
+            string point_of_departure, string point_of_arrival, decimal weight,
+            decimal width, decimal height, string type_cargo, DateTime reg_date, decimal cost, decimal paid)
         {
-            //Driver driver = new Driver();
-            //driver.full_name = full_name;
-            //driver.phone_number = phone_number;
-            //driver.date_of_birth = date_of_birth;
-            //driver.passport_number = passport_number;
-            //driver.adress = adress;
-            //driver.status = status;
-            //Driver.InsertOnSubmit(driver);
-            //SubmitChanges();
+            Order order = new Order();
+            order.id_driver = id_driver;
+            order.id_car = id_car;
+            order.id_client = id_client;
+            order.point_of_departure = point_of_departure;
+            order.point_of_arrival = point_of_arrival;
+            order.weight = weight;
+            order.width = width;
+            order.height = height;
+            order.type_cargo = type_cargo;
+            order.reg_date = reg_date;
+            order.cost = cost;
+            order.paid = paid;
+            Order.InsertOnSubmit(order);
+            SubmitChanges();
         }
 
-        public void UpdateOrder()
+        public void UpdateOrder(int id_order, int id_driver, int id_car, int id_client, 
+            string point_of_departure, string point_of_arrival, decimal weight, 
+            decimal width, decimal height, string type_cargo, DateTime reg_date, decimal cost, decimal paid)
         {
-            //Driver driver = Driver.Where(d => d.id_driver == id_driver).FirstOrDefault();
-            //driver.full_name = full_name;
-            //driver.phone_number = phone_number;
-            //driver.date_of_birth = date_of_birth;
-            //driver.passport_number = passport_number;
-            //driver.adress = adress;
-            //driver.status = status;
-            //SubmitChanges();
+            Order order = Order.Where(d => d.id_driver == id_order).FirstOrDefault();
+
+            order.id_driver = id_driver;
+            order.id_car = id_car;
+            order.id_client = id_client;
+            order.point_of_departure = point_of_departure;
+            order.point_of_arrival = point_of_arrival;
+            order.weight = weight;
+            order.width = width;
+            order.height = height;
+            order.type_cargo = type_cargo;
+            order.reg_date = reg_date;
+            order.cost = cost;
+            order.paid = paid;
+            SubmitChanges();
         }
 
         public void DelOrder(int id_order)
         {
-            //Driver driver = Driver.Where(d => d.id_driver == id_driver).FirstOrDefault();
-            //Driver.DeleteOnSubmit(driver);
-            //SubmitChanges();
+            Order order = Order.Where(o => o.id_order == id_order).FirstOrDefault();
+            Order.DeleteOnSubmit(order);
+            SubmitChanges();
         }
 
         public List<Order> ShowOrder()
@@ -1428,7 +1445,16 @@ namespace curs._1
 			this.SendPropertyChanging();
 			entity.Order = null;
 		}
-	}
+
+
+        public override string ToString()
+        {
+            return point_of_departure + " || " +
+                point_of_arrival + " || " + weight + " || " + width + " || " + height + " || "
+                + type_cargo + " || " + reg_date.Date + " || " + cost + " || " + paid;
+        }
+        
+    }
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Profit_driver")]
 	public partial class Profit_driver : INotifyPropertyChanging, INotifyPropertyChanged

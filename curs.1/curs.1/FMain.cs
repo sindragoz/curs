@@ -39,5 +39,11 @@ namespace curs._1
             FDriver fd = new FDriver(db);
             fd.ShowDialog();
         }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            FOrder fd = new FOrder(db);
+            fd.ShowDialog();
+        }
     }
 }
