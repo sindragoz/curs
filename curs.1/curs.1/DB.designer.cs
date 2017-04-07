@@ -227,8 +227,53 @@ namespace curs._1
 
         public List<Driver> ShowDriver()
         {
-            return Driver.Where(c => c.id_driver >= 0).ToList();
+            return Driver.Where(d => d.id_driver >= 0).ToList();
         }
+
+        ////////////////////////////order
+        public void AddOrder()
+        {
+            //Driver driver = new Driver();
+            //driver.full_name = full_name;
+            //driver.phone_number = phone_number;
+            //driver.date_of_birth = date_of_birth;
+            //driver.passport_number = passport_number;
+            //driver.adress = adress;
+            //driver.status = status;
+            //Driver.InsertOnSubmit(driver);
+            //SubmitChanges();
+        }
+
+        public void UpdateOrder()
+        {
+            //Driver driver = Driver.Where(d => d.id_driver == id_driver).FirstOrDefault();
+            //driver.full_name = full_name;
+            //driver.phone_number = phone_number;
+            //driver.date_of_birth = date_of_birth;
+            //driver.passport_number = passport_number;
+            //driver.adress = adress;
+            //driver.status = status;
+            //SubmitChanges();
+        }
+
+        public void DelOrder(int id_order)
+        {
+            //Driver driver = Driver.Where(d => d.id_driver == id_driver).FirstOrDefault();
+            //Driver.DeleteOnSubmit(driver);
+            //SubmitChanges();
+        }
+
+        public List<Order> ShowOrder()
+        {
+            return Order.Where(o => o.id_order >= 0).ToList();
+        }
+
+
+        //////////////////////////profit_driver
+
+
+
+
 
     }
 
