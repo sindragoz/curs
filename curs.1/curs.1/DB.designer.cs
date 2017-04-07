@@ -547,7 +547,11 @@ namespace curs._1
 
         public override string ToString()
         {
-            return base.ToString();
+            if (company != null)
+            {
+                return full_name + " || " + phone_number + " || " + company;
+            }
+            return full_name + " || " + phone_number;
         }
     }
 	
