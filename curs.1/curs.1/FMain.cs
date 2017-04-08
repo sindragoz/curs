@@ -52,7 +52,7 @@ namespace View
 
         private void button6_Click(object sender, EventArgs e)
         {
-            FEntry fe = new FEntry();
+            FEntry fe = new FEntry(db);
             fe.ShowDialog();
         }
 

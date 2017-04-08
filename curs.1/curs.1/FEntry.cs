@@ -9,33 +9,38 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Model;
+using Controller;
 
 namespace View
 {
     public partial class FEntry : Form
     {
-        public FEntry()
+        private DBDataContext db;
+
+        Visitor userdb;
+        public FEntry(DBDataContext db)
         {
             InitializeComponent();
+            this.db = db;
+            userdb = new Visitor(db);
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            //if (log_in() != null)
+            string login = textBox1.Text;
+            string password  = textBox2.Text;
+            //userdb.log_in(login, password);
+            //if (userdb.User!=null)
             //{
-               
-            //    Program.client = log_in();
-            //    MessageBox.Show(Program.client.login);
-            //}
-            Close();
+            //    MessageBox.Show(userdb.User.login);
+            //    Close();
+            //}else
+            //    MessageBox.Show("nope");
+            
+            
+            
         }
 
-        //Client log_in()
-        //{
-        //    string login = textBox1.Text;
-        //    string pass = textBox2.Text;
-
-        //    return FMain.db.Client.Where(c => (c.login == login && c.password == pass)).FirstOrDefault();
-        //}
+       
     }
 }

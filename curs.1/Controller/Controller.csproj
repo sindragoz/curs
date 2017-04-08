@@ -48,6 +48,7 @@
     <Compile Include="OrderDB.cs" />
     <Compile Include="Profit_driverDB.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UserDB.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Model\Model.csproj">

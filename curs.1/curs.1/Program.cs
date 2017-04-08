@@ -12,9 +12,6 @@ namespace View
         /// <summary>
         /// Главная точка входа для приложения.
         /// </summary> 
-
-
-        static public Client client;
         
         [STAThread]
        
