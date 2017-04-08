@@ -1,4 +1,4 @@
-﻿namespace curs._1
+﻿namespace View
 {
     partial class FDriver
     {

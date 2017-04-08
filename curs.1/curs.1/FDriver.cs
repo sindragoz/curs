@@ -1,7 +1,8 @@
-﻿using System;
+﻿using Model;
+using System;
 using System.Windows.Forms;
 
-namespace curs._1
+namespace View
 {
     public partial class FDriver : Form
     {
@@ -40,7 +41,7 @@ namespace curs._1
 
                 FillFields();
 
-                 db.AddDriver(full_name, phone_number, date_of_birth, passport_number, adress, status);
+                 db.InsertDriver(full_name, phone_number, date_of_birth, passport_number, adress, status);
 
                 showbd();
             }
@@ -76,7 +77,7 @@ namespace curs._1
             try
             {
                 id_driver = (listBox1.SelectedItem as Driver).id_driver;
-                db.DelDriver(id_driver);
+                db.DeleteDriver(id_driver);
                 showbd();
             }
             catch (Exception ex)

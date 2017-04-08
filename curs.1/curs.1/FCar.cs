@@ -1,7 +1,8 @@
-﻿using System;
+﻿using Model;
+using System;
 using System.Windows.Forms;
 
-namespace curs._1
+namespace View
 {
     public partial class FCar : Form
     {
@@ -39,7 +40,7 @@ namespace curs._1
 
                 FillFields();
 
-                db.AddCar(number, brand, carrying_capacity, width, heigth, status);
+                db.InsertCar(number, brand, carrying_capacity, width, heigth, status);
 
                 showbd();
 
@@ -75,7 +76,7 @@ namespace curs._1
             try
             {
                 id_car = (listBox1.SelectedItem as Car).id_car;
-                db.DelCar(id_car);
+                db.DeleteCar(id_car);
                 showbd();
             }
             catch (Exception ex)

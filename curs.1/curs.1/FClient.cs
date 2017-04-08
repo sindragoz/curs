@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Model;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -8,7 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace curs._1
+namespace View
 {
     
     public partial class FClient : Form
@@ -44,7 +45,7 @@ namespace curs._1
 
                 FillFields();
 
-                db.AddClient(full_name, phone_number, company, login, password);
+                db.InsertClient(full_name, phone_number, company, login, password);
 
                 showbd();
             }
@@ -59,7 +60,7 @@ namespace curs._1
             try
             {
                 id_client = (listBox1.SelectedItem as Client).id_client;
-                db.DelClient(id_client);
+                db.DeleteClient(id_client);
                 showbd();
 
             }

@@ -1,23 +1,24 @@
-﻿using System;
+﻿using Model;
+using System;
 using System.Windows.Forms;
 
-namespace curs._1
+namespace View
 {
     public partial class FMain : Form
     {
         //  CursDataContext dc;
-        DBDataContext db;
+       static public DBDataContext db;
         public FMain()
         {
             InitializeComponent();
             //@"Data Source=DESKTOP-3U6D185\SQLEXPRESS;Initial Catalog=curs;Integrated Security=True;Pooling=False"
             // string connectionString = @"Data Source=\SQLEXPRESS;Initial Catalog=curs;Integrated Security=True";
-            //string connectionString = @"Data Source = (LocalDB)\MSSQLLocalDB;" +
-            //   @"AttachDbFilename = |DataDirectory|\curs.mdf;" +
-            //   @"Integrated Security = True; Connect Timeout = 30";
+            string connectionString = @"Data Source = (LocalDB)\MSSQLLocalDB;" +
+               @"AttachDbFilename = |DataDirectory|\curs.mdf;" +
+               @"Integrated Security = True; Connect Timeout = 30";
             //string connectionString = @"Data Source =.\SQLEXPRESS;" + 
             //    @"AttachDbFilename = |DataDirectory|\curs.mdf; Integrated Security = True";
-            string connectionString = @"Data Source=.\SQLEXPRESS;Initial Catalog=curs;Integrated Security=True;Pooling=False";
+            //string connectionString = @"Data Source=.\SQLEXPRESS;Initial Catalog=curs;Integrated Security=True;Pooling=False";
             //   dc = new CursDataContext(connectionString);
             db = new DBDataContext(connectionString);
         }
@@ -44,6 +45,12 @@ namespace curs._1
         {
             FOrder fd = new FOrder(db);
             fd.ShowDialog();
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            FEntry fe = new FEntry();
+            fe.ShowDialog();
         }
     }
 }

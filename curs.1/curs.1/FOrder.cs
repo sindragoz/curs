@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Model;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -8,7 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace curs._1
+namespace View
 {
     public partial class FOrder : Form
     {
@@ -58,7 +59,7 @@ namespace curs._1
 
                 FillFields();
 
-                db.AddOrder(id_driver, id_car, id_client, point_of_departure,
+                db.InsertOrder(id_driver, id_car, id_client, point_of_departure,
                     point_of_arrival, weight, width, height, type_cargo, reg_date, cost, paid);
 
                 showbd();
@@ -75,7 +76,7 @@ namespace curs._1
             try
             {
                 id_order = (listBox1.SelectedItem as Order).id_order;
-                db.DelOrder(id_order);
+                db.DeleteOrder(id_order);
                 showbd();
             }
             catch (Exception ex)
