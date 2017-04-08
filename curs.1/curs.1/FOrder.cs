@@ -1,4 +1,5 @@
-﻿using Model;
+﻿using Controller;
+using Model;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -43,10 +44,12 @@ namespace View
 
         decimal paid;
 
+        OrderDB orderdb;
         public FOrder(DBDataContext db)
         {
             InitializeComponent();
             this.db = db;
+            orderdb = new OrderDB(db);
             showbd();
         }
 
@@ -59,7 +62,7 @@ namespace View
 
                 FillFields();
 
-                db.InsertOrder(id_driver, id_car, id_client, point_of_departure,
+                orderdb.Insert(id_driver, id_car, id_client, point_of_departure,
                     point_of_arrival, weight, width, height, type_cargo, reg_date, cost, paid);
 
                 showbd();
@@ -76,7 +79,7 @@ namespace View
             try
             {
                 id_order = (listBox1.SelectedItem as Order).id_order;
-                db.DeleteOrder(id_order);
+                orderdb.Delete(id_order);
                 showbd();
             }
             catch (Exception ex)
@@ -95,7 +98,7 @@ namespace View
 
                 FillFields();
 
-                db.UpdateOrder(order.id_order, id_driver, id_car, id_client, point_of_departure,
+                orderdb.Update(order.id_order, id_driver, id_car, id_client, point_of_departure,
                     point_of_arrival, weight, width, height, type_cargo, reg_date, cost, paid);
 
                 showbd();
@@ -111,7 +114,7 @@ namespace View
             try
             {
                 listBox1.Items.Clear();
-                foreach (var v in db.ShowOrder())
+                foreach (var v in orderdb.Show())
                 {
                     listBox1.Items.Add(v);
                 }

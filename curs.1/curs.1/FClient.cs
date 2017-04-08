@@ -1,4 +1,5 @@
-﻿using Model;
+﻿using Controller;
+using Model;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -30,10 +31,13 @@ namespace View
 
         string password;
 
+        ClientDB clientdb;
+
         public FClient(DBDataContext db)
         {
             InitializeComponent();
             this.db = db;
+            clientdb = new ClientDB(db);
             showbd();
         }
 
@@ -45,7 +49,7 @@ namespace View
 
                 FillFields();
 
-                db.InsertClient(full_name, phone_number, company, login, password);
+                clientdb.Insert(full_name, phone_number, company, login, password);
 
                 showbd();
             }
@@ -60,7 +64,7 @@ namespace View
             try
             {
                 id_client = (listBox1.SelectedItem as Client).id_client;
-                db.DeleteClient(id_client);
+                clientdb.Delete(id_client);
                 showbd();
 
             }
@@ -80,7 +84,7 @@ namespace View
 
                 FillFields();
 
-                db.UpdateClient(client.id_client, full_name, phone_number, company, login, password);
+                clientdb.Update(client.id_client, full_name, phone_number, company, login, password);
 
                 showbd();
             }
@@ -96,7 +100,7 @@ namespace View
             try
             {
                 listBox1.Items.Clear();
-                foreach ( var v in db.ShowClient() )
+                foreach ( var v in clientdb.Show() )
                 {
                     listBox1.Items.Add(v);
                 }

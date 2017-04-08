@@ -1,4 +1,5 @@
-﻿using Model;
+﻿using Controller;
+using Model;
 using System;
 using System.Windows.Forms;
 
@@ -25,10 +26,13 @@ namespace View
 
         FRedactCar f_red;
 
+        CarDB cardb;
+
         public FCar(DBDataContext db)
         {
             InitializeComponent();
             this.db = db;
+            cardb = new CarDB(db);
             showbd();
         }
 
@@ -40,7 +44,7 @@ namespace View
 
                 FillFields();
 
-                db.InsertCar(number, brand, carrying_capacity, width, heigth, status);
+                cardb.Insert(number, brand, carrying_capacity, width, heigth, status);
 
                 showbd();
 
@@ -61,7 +65,7 @@ namespace View
 
                 FillFields();
 
-                db.UpdateCar(car.id_car, number, brand, carrying_capacity, width, heigth, status);
+                cardb.Update(car.id_car, number, brand, carrying_capacity, width, heigth, status);
 
                 showbd();
             }
@@ -76,7 +80,7 @@ namespace View
             try
             {
                 id_car = (listBox1.SelectedItem as Car).id_car;
-                db.DeleteCar(id_car);
+                cardb.Delete(id_car);
                 showbd();
             }
             catch (Exception ex)
@@ -90,7 +94,7 @@ namespace View
             try
             {
                 listBox1.Items.Clear();
-                foreach ( var v in db.ShowCar() )
+                foreach ( var v in cardb.Show() )
                 {
                     listBox1.Items.Add(v);
                 }

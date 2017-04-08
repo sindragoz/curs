@@ -11,7 +11,11 @@ C:\Users\Admin\Documents\Visual Studio 2015\Projects\cursovaia\name\curs.1\curs.
 C:\Users\Admin\Documents\Visual Studio 2015\Projects\cursovaia\name\curs.1\curs.1\obj\Debug\View.FRedactCar.resources
 C:\Users\Admin\Documents\Visual Studio 2015\Projects\cursovaia\name\curs.1\curs.1\obj\Debug\View.FRedactClient.resources
 C:\Users\Admin\Documents\Visual Studio 2015\Projects\cursovaia\name\curs.1\curs.1\obj\Debug\View.FRedactDriver.resources
-C:\Users\Admin\Documents\Visual Studio 2015\Projects\cursovaia\name\curs.1\curs.1\obj\Debug\curs._1.Properties.Resources.resources
 C:\Users\Admin\Documents\Visual Studio 2015\Projects\cursovaia\name\curs.1\curs.1\obj\Debug\View.csproj.GenerateResource.Cache
 C:\Users\Admin\Documents\Visual Studio 2015\Projects\cursovaia\name\curs.1\curs.1\obj\Debug\curs.1.exe
 C:\Users\Admin\Documents\Visual Studio 2015\Projects\cursovaia\name\curs.1\curs.1\obj\Debug\curs.1.pdb
+C:\Users\Admin\Documents\Visual Studio 2015\Projects\cursovaia\name\curs.1\curs.1\obj\Debug\View.csprojResolveAssemblyReference.cache
+C:\Users\Admin\Documents\Visual Studio 2015\Projects\cursovaia\name\curs.1\curs.1\bin\Debug\Controller.dll
+C:\Users\Admin\Documents\Visual Studio 2015\Projects\cursovaia\name\curs.1\curs.1\bin\Debug\Controller.pdb
+C:\Users\Admin\Documents\Visual Studio 2015\Projects\cursovaia\name\curs.1\curs.1\obj\Debug\View.FProfit_driver.resources
+C:\Users\Admin\Documents\Visual Studio 2015\Projects\cursovaia\name\curs.1\curs.1\obj\Debug\View.Properties.Resources.resources

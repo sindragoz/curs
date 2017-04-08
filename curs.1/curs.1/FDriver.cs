@@ -1,4 +1,5 @@
-﻿using Model;
+﻿using Controller;
+using Model;
 using System;
 using System.Windows.Forms;
 
@@ -24,11 +25,13 @@ namespace View
 
         bool status;
 
+        DriverDB driverdb ;
        
         public FDriver(DBDataContext db)
         {
             InitializeComponent();
             this.db = db;
+            driverdb = new DriverDB(db);
             showbd();
         }
 
@@ -41,7 +44,7 @@ namespace View
 
                 FillFields();
 
-                 db.InsertDriver(full_name, phone_number, date_of_birth, passport_number, adress, status);
+                driverdb.Insert(full_name, phone_number, date_of_birth, passport_number, adress, status);
 
                 showbd();
             }
@@ -61,7 +64,7 @@ namespace View
 
                 FillFields();
 
-                db.UpdateDriver(driver.id_driver, full_name, phone_number,
+                driverdb.Update(driver.id_driver, full_name, phone_number,
                     date_of_birth, passport_number, adress, status);
 
                 showbd();
@@ -77,7 +80,7 @@ namespace View
             try
             {
                 id_driver = (listBox1.SelectedItem as Driver).id_driver;
-                db.DeleteDriver(id_driver);
+                driverdb.Delete(id_driver);
                 showbd();
             }
             catch (Exception ex)
@@ -91,7 +94,7 @@ namespace View
             try
             {
                 listBox1.Items.Clear();
-                foreach (var v in db.ShowDriver())
+                foreach (var v in driverdb.Show())
                 {
                     listBox1.Items.Add(v);
                 }

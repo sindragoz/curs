@@ -21,21 +21,21 @@ namespace View
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if (log_in() != null)
-            {
+            //if (log_in() != null)
+            //{
                
-                Program.client = log_in();
-                MessageBox.Show(Program.client.login);
-            }
+            //    Program.client = log_in();
+            //    MessageBox.Show(Program.client.login);
+            //}
             Close();
         }
 
-        Client log_in()
-        {
-            string login = textBox1.Text;
-            string pass = textBox2.Text;
+        //Client log_in()
+        //{
+        //    string login = textBox1.Text;
+        //    string pass = textBox2.Text;
 
-            return FMain.db.Client.Where(c => (c.login == login && c.password == pass)).FirstOrDefault();
-        }
+        //    return FMain.db.Client.Where(c => (c.login == login && c.password == pass)).FirstOrDefault();
+        //}
     }
 }

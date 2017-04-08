@@ -119,7 +119,7 @@ namespace Model
                 {
                     if (this._Driver.HasLoadedOrAssignedValue)
                     {
-                        throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+                        throw new ForeignKeyReferenceAlreadyHasValueException();
                     }
                     this.Onid_driverChanging(value);
                     this.SendPropertyChanging();
@@ -143,7 +143,7 @@ namespace Model
                 {
                     if (this._Car.HasLoadedOrAssignedValue)
                     {
-                        throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+                        throw new ForeignKeyReferenceAlreadyHasValueException();
                     }
                     this.Onid_carChanging(value);
                     this.SendPropertyChanging();
@@ -167,7 +167,7 @@ namespace Model
                 {
                     if (this._Client.HasLoadedOrAssignedValue)
                     {
-                        throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+                        throw new ForeignKeyReferenceAlreadyHasValueException();
                     }
                     this.Onid_clientChanging(value);
                     this.SendPropertyChanging();

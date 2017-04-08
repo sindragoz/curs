@@ -1,4 +1,5 @@
 ﻿using Model;
+using Controller;
 using System;
 using System.Windows.Forms;
 
@@ -6,21 +7,23 @@ namespace View
 {
     public partial class FMain : Form
     {
-        //  CursDataContext dc;
-       static public DBDataContext db;
+       
+
+        DBDataContext db;
         public FMain()
         {
+            ConnectDB conDB = new ConnectDB();
             InitializeComponent();
+            db = conDB.DB;
+
+
             //@"Data Source=DESKTOP-3U6D185\SQLEXPRESS;Initial Catalog=curs;Integrated Security=True;Pooling=False"
             // string connectionString = @"Data Source=\SQLEXPRESS;Initial Catalog=curs;Integrated Security=True";
-            string connectionString = @"Data Source = (LocalDB)\MSSQLLocalDB;" +
-               @"AttachDbFilename = |DataDirectory|\curs.mdf;" +
-               @"Integrated Security = True; Connect Timeout = 30";
+
             //string connectionString = @"Data Source =.\SQLEXPRESS;" + 
             //    @"AttachDbFilename = |DataDirectory|\curs.mdf; Integrated Security = True";
             //string connectionString = @"Data Source=.\SQLEXPRESS;Initial Catalog=curs;Integrated Security=True;Pooling=False";
-            //   dc = new CursDataContext(connectionString);
-            db = new DBDataContext(connectionString);
+
         }
 
         private void button5_Click(object sender, EventArgs e)
@@ -51,6 +54,12 @@ namespace View
         {
             FEntry fe = new FEntry();
             fe.ShowDialog();
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            FProfit_driver fpd = new FProfit_driver(db);
+            fpd.ShowDialog();
         }
     }
 }
