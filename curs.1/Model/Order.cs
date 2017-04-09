@@ -508,8 +508,8 @@ namespace Model
         public override string ToString()
         {
             return point_of_departure + " || " + _point_of_arrival + " || " +
-                _weight + " || " + _width + " || " + _point_of_arrival +
-                    height + " || " + _reg_date + " || " + _cost + " || " +
+                _weight + " || " + _width + " || "   + height + " || "
+                + _reg_date.ToString("dd'/'MM'/'yyyy") + " || " + _cost + " || " +
                     _paid + " || " + _status;
 
         }

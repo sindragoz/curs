@@ -1,4 +1,5 @@
-﻿using Model;
+﻿using Controller;
+using Model;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -25,7 +26,13 @@ namespace View
             textBox10.Visible = false;
             textBox11.Visible = false;
             textBox12.Visible = false;
-
+            label1.Visible = false;
+            label2.Visible = false;
+            label3.Visible = false;
+            label9.Visible = false;
+            label10.Visible = false;
+            label11.Visible = false;
+            label12.Visible = false;
         }
 
         public FRedactOrder(Order order)
@@ -43,6 +50,25 @@ namespace View
             textBox10.Text = order.reg_date.ToString();
             textBox11.Text = order.cost.ToString();
             textBox12.Text = order.paid.ToString();
+
+            if (Visitor.user.role == "client")
+            {
+                label1.Visible = false;
+                label2.Visible = false;
+                label3.Visible = false;
+                label9.Visible = false;
+                label10.Visible = false;
+                label11.Visible = false;
+                label12.Visible = false;
+                textBox1.Visible = false;
+                textBox2.Visible = false;
+                textBox3.Visible = false;
+                textBox9.Visible = false;
+                textBox10.Visible = false;
+                textBox11.Visible = false;
+                textBox12.Visible = false;
+
+            }
         }
 
         private void button1_Click(object sender, EventArgs e)

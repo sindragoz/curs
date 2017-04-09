@@ -10,6 +10,7 @@ namespace Controller
     public class DriverDB
     {
         private DBDataContext db;
+        OrderDB orderdb;
 
         public DriverDB(DBDataContext db)
         {
@@ -28,6 +29,9 @@ namespace Controller
             driver.status = status;
             db.Driver.InsertOnSubmit(driver);
             db.SubmitChanges();
+
+            orderdb = new OrderDB(db);
+            orderdb.SetDriver();
         }
 
         public void Update(int id_driver, string full_name, string phone_number, DateTime date_of_birth,

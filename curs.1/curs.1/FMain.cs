@@ -12,18 +12,13 @@ namespace View
         DBDataContext db;
         public FMain()
         {
-            ConnectDB conDB = new ConnectDB();
+            ConnectDB cdb = new ConnectDB();
+            this.db = cdb.DB;
+
+            FEntry fe = new FEntry(db);
+            fe.ShowDialog();
             InitializeComponent();
-            db = conDB.DB;
-
-
-            //@"Data Source=DESKTOP-3U6D185\SQLEXPRESS;Initial Catalog=curs;Integrated Security=True;Pooling=False"
-            // string connectionString = @"Data Source=\SQLEXPRESS;Initial Catalog=curs;Integrated Security=True";
-
-            //string connectionString = @"Data Source =.\SQLEXPRESS;" + 
-            //    @"AttachDbFilename = |DataDirectory|\curs.mdf; Integrated Security = True";
-            //string connectionString = @"Data Source=.\SQLEXPRESS;Initial Catalog=curs;Integrated Security=True;Pooling=False";
-
+            
         }
 
         private void button5_Click(object sender, EventArgs e)
@@ -49,17 +44,13 @@ namespace View
             FOrder fd = new FOrder(db);
             fd.ShowDialog();
         }
-
-        private void button6_Click(object sender, EventArgs e)
-        {
-            FEntry fe = new FEntry(db);
-            fe.ShowDialog();
-        }
+        
 
         private void button4_Click(object sender, EventArgs e)
         {
             FProfit_driver fpd = new FProfit_driver(db);
             fpd.ShowDialog();
         }
+        
     }
 }

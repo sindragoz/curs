@@ -12,9 +12,9 @@ namespace Controller
     {
         private DBDataContext db;
 
-        User user;
+        static public User user;
 
-       static public Client client;
+        static public Client client;
 
 
         public Visitor(DBDataContext db)
@@ -23,19 +23,20 @@ namespace Controller
         }
         
 
-        public void Log_in(string login, string password)
+        public bool Log_in(string login, string password)
         {
             User user;
             user = db.User.Where(u => (u.login == login && u.password == password)).FirstOrDefault();
             if (user != null)
             {
-                this.user = user;
-            }
-            if (getClient()!=null)
-            {
+                Visitor.user = user;
+                
                 client = getClient();
+
+                return true;
             }
-           
+
+            return false;
         }
 
         Client getClient()

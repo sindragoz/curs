@@ -1,4 +1,5 @@
-﻿using Model;
+﻿using Controller;
+using Model;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,9 +14,31 @@ namespace View
 {
     public partial class FRedactClient : Form
     {
+
+        string full_name;
+
+        string phone_number;
+
+        string company;
+
+        string login;
+
+        string password;
+
+        DBDataContext db;
+
+        ClientDB clientdb;
+
         public FRedactClient()
         {
             InitializeComponent();
+        }
+
+        public FRedactClient(DBDataContext db)
+        {
+            InitializeComponent();
+            this.db = db;
+            clientdb = new ClientDB(db);
         }
 
         public FRedactClient(Client client)
@@ -30,6 +53,22 @@ namespace View
 
         private void button1_Click(object sender, EventArgs e)
         {
+
+            if (Visitor.user == null)
+            {
+                full_name = textBox1.Text;
+
+                phone_number = textBox2.Text;
+
+                company = textBox3.Text;
+
+                login = textBox5.Text;
+
+                password = textBox6.Text;
+
+                clientdb.Insert(login, password, full_name, phone_number, company);
+
+            }
             Close();
         }
     }

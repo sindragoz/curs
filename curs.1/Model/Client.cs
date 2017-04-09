@@ -112,7 +112,7 @@ namespace Model
             }
         }
 
-        [Column(Storage = "_phone_number", DbType = "VarChar(11) NOT NULL", CanBeNull = false)]
+        [Column(Storage = "_phone_number", DbType = "VarChar(20) NOT NULL", CanBeNull = false)]
         public string phone_number
         {
             get
@@ -233,7 +233,8 @@ namespace Model
 
         public override string ToString()
         {
-            return full_name + " || " + phone_number + " || " + company + " || ";
+            string str = (company != null) ? company : "";
+            return full_name + " || " + phone_number + " || " + str;
         }
     }
 

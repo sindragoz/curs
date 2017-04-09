@@ -10,7 +10,7 @@ namespace Controller
     public class CarDB
     {
         private DBDataContext db;
-
+        OrderDB orderdb;
         public CarDB(DBDataContext db)
         {
             this.db = db;
@@ -28,6 +28,10 @@ namespace Controller
             car.status = status;
             db.Car.InsertOnSubmit(car);
             db.SubmitChanges();
+
+            orderdb = new OrderDB(db);
+            orderdb.SetCar();
+
         }
 
 
@@ -56,13 +60,20 @@ namespace Controller
             return db.Car.Where(c => c.id_car >= 0).ToList();
         }
 
-        public int? FindFreeCar()
+        public int? FindFreeCar(Order order)
         {
-            Car car = db.Car.Where(c => c.status).FirstOrDefault();
-            if (car != null)
+            List<Car> cars = db.Car.Where(c => c.status).ToList();
+            foreach(var car in cars)
             {
-                car.status = false;
-                return car.id_car;
+                if (car != null)
+                {
+                    if (car.carrying_capacity > order.weight
+                        && car.width > order.width && car.heigth > order.height)
+                    {
+                        car.status = false;
+                        return car.id_car;
+                    }
+                }
             }
             return null;
            

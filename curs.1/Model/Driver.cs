@@ -93,7 +93,7 @@ namespace Model
             }
         }
 
-        [Column(Storage = "_phone_number", DbType = "VarChar(15) NOT NULL", CanBeNull = false)]
+        [Column(Storage = "_phone_number", DbType = "VarChar(20) NOT NULL", CanBeNull = false)]
         public string phone_number
         {
             get
@@ -241,8 +241,8 @@ namespace Model
 
         public override string ToString()
         {
-            return full_name + " || " + phone_number + " || " + date_of_birth.Date + " || " +
-                passport_number + " || " + adress + " || " + status;
+            return full_name + " || " + phone_number + " || " + date_of_birth.ToString("dd'/'MM'/'yyyy")
+                + " || " + passport_number + " || " + adress + " || " + status;
         }
     }
 

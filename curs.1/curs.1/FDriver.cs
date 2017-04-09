@@ -47,12 +47,12 @@ namespace View
                 driverdb.Insert(full_name, phone_number, date_of_birth, passport_number, adress, status);
 
                 showbd();
-            }
+             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
-        }
+}
 
         private void Update_Click(object sender, EventArgs e)
         {

@@ -19,7 +19,7 @@ namespace Model
 
         private DateTime _date;
 
-        private int _value;
+        private decimal _value;
 
         private EntityRef<Order> _Order;
 
@@ -35,7 +35,7 @@ namespace Model
         partial void Onid_orderChanged();
         partial void OndateChanging(System.DateTime value);
         partial void OndateChanged();
-        partial void OnvalueChanging(int value);
+        partial void OnvalueChanging(decimal value);
         partial void OnvalueChanged();
         #endregion
 
@@ -129,8 +129,8 @@ namespace Model
             }
         }
 
-        [Column(Storage = "_value", DbType = "Int NOT NULL")]
-        public int value
+        [Column(Storage = "_value", DbType = "Decimal(10,2) NOT NULL")]
+        public decimal value
         {
             get
             {
@@ -201,6 +201,11 @@ namespace Model
             {
                 this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
             }
+        }
+
+        public override string ToString()
+        {
+            return id_driver  + " || " + this.date.ToString("dd'/'MM'/'yyyy") + " || " + this.value;
         }
     }
 }
