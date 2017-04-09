@@ -17,7 +17,7 @@ namespace Controller
         }
 
         public void Insert(string number, string brand, decimal carrying_capacity,
-            decimal width, decimal heigth, bool status)
+            decimal width, decimal heigth, decimal length, bool status)
         {
             Car car = new Car();
             car.number = number;
@@ -25,6 +25,7 @@ namespace Controller
             car.carrying_capacity = carrying_capacity;
             car.width = width;
             car.heigth = heigth;
+            car.length = length;
             car.status = status;
             db.Car.InsertOnSubmit(car);
             db.SubmitChanges();
@@ -36,7 +37,7 @@ namespace Controller
 
 
         public void Update(int id_car, string number, string brand, decimal carrying_capacity,
-           decimal width, decimal heigth, bool status)
+           decimal width, decimal heigth, decimal length, bool status)
         {
             Car car = db.Car.Where(c => c.id_car == id_car).FirstOrDefault();
             car.number = number;
@@ -67,12 +68,25 @@ namespace Controller
             {
                 if (car != null)
                 {
-                    if (car.carrying_capacity > order.weight
-                        && car.width > order.width && car.heigth > order.height)
+                    if (car.carrying_capacity < order.weight) continue;
+
+                    if (order.height != null)
                     {
-                        car.status = false;
-                        return car.id_car;
+                        if (car.heigth < order.height) continue;
                     }
+
+                    if (order.width != null)
+                    {
+                        if (car.width < order.width) continue;
+                    }
+
+                    if (order.length != null)
+                    {
+                        if (car.length < order.length)  continue;
+                    }
+
+                    car.status = false;
+                    return car.id_car;
                 }
             }
             return null;

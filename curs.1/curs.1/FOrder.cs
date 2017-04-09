@@ -1,13 +1,6 @@
 ﻿using Controller;
 using Model;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace View
@@ -32,9 +25,9 @@ namespace View
 
         decimal weight;
 
-        decimal width;
-
-        decimal height;
+        decimal? width;
+        decimal? height;
+        decimal? length;
 
         string status;
 
@@ -66,23 +59,23 @@ namespace View
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            try
-            {
+            //try
+            //{
                 f_red = new FRedactOrder();
 
                 FillFields();
 
                 Order order = new Order();
 
-                orderdb.Insert(point_of_departure, point_of_arrival, weight, width, height);
+                orderdb.Insert(point_of_departure, point_of_arrival, weight, width, height, length);
 
                 showbd();
 
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
+            //}
+            //catch (Exception ex)
+            //{
+            //    MessageBox.Show(ex.Message);
+            //}
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
@@ -117,7 +110,7 @@ namespace View
 
 
                 orderdb.Update(order.id_order, id_driver, id_car, id_client, point_of_departure,
-                    point_of_arrival, weight, width, height, status, reg_date, cost, paid);
+                    point_of_arrival, weight, width, height, length, status, reg_date, cost, paid);
 
                 showbd();
             }
@@ -164,10 +157,22 @@ namespace View
 
             weight = Convert.ToDecimal(f_red.textBox6.Text);
 
-            width = Convert.ToDecimal(f_red.textBox7.Text);
 
-            height = Convert.ToDecimal(f_red.textBox8.Text);
-          
+            if (f_red.textBox7.Text != "")
+            {
+                width = Convert.ToDecimal(f_red.textBox7.Text);
+            }
+
+            if (f_red.textBox8.Text != "")
+            {
+                height = Convert.ToDecimal(f_red.textBox8.Text);
+            }
+
+            if (f_red.textBox13.Text != "")
+            {
+                length = Convert.ToDecimal(f_red.textBox13.Text);
+            }
+
         }
 
         private void button1_Click(object sender, EventArgs e)

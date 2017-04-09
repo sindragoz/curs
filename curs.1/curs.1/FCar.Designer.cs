@@ -69,14 +69,14 @@
             this.listBox1.FormattingEnabled = true;
             this.listBox1.Location = new System.Drawing.Point(157, 30);
             this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(288, 394);
+            this.listBox1.Size = new System.Drawing.Size(380, 394);
             this.listBox1.TabIndex = 4;
             // 
             // FCar
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(617, 453);
+            this.ClientSize = new System.Drawing.Size(559, 453);
             this.Controls.Add(this.listBox1);
             this.Controls.Add(this.btnUpdate);
             this.Controls.Add(this.btnDelete);

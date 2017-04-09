@@ -26,6 +26,7 @@ namespace View
             textBox3.Text = car.carrying_capacity.ToString();
             textBox4.Text = car.width.ToString();
             textBox5.Text = car.heigth.ToString();
+            textBox6.Text = car.length.ToString();
             checkBox1.Checked = car.status;
         }
 

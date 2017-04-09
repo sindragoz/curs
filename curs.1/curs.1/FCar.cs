@@ -22,6 +22,8 @@ namespace View
 
         decimal heigth;
 
+        decimal length;
+
         bool status = true;
 
         FRedactCar f_red;
@@ -44,7 +46,7 @@ namespace View
 
                 FillFields();
 
-                cardb.Insert(number, brand, carrying_capacity, width, heigth, status);
+                cardb.Insert(number, brand, carrying_capacity, width, heigth, length, status);
 
                 showbd();
 
@@ -65,7 +67,8 @@ namespace View
 
                 FillFields();
 
-                cardb.Update(car.id_car, number, brand, carrying_capacity, width, heigth, status);
+                cardb.Update(car.id_car, number, brand, carrying_capacity, width,
+                    heigth, length, status);
 
                 showbd();
             }
@@ -118,6 +121,8 @@ namespace View
             width = Convert.ToDecimal(f_red.textBox4.Text);
 
             heigth = Convert.ToDecimal(f_red.textBox5.Text);
+
+            length = Convert.ToDecimal(f_red.textBox6.Text);
 
             status = f_red.checkBox1.Checked;
 

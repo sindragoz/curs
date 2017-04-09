@@ -22,7 +22,7 @@ namespace Controller
 
 
         public void Insert(string point_of_departure, string point_of_arrival, decimal weight,
-            decimal width, decimal height)
+            decimal? width, decimal? height, decimal? length)
         {
             Order order = new Order();
 
@@ -39,6 +39,7 @@ namespace Controller
             order.weight = weight;
             order.width = width;
             order.height = height;
+            order.length = length;
 
             order.id_car = cardb.FindFreeCar(order);
 
@@ -51,8 +52,8 @@ namespace Controller
         }
 
         public void Update(int id_order, int? id_driver, int? id_car, int id_client,
-            string point_of_departure, string point_of_arrival, decimal weight,
-            decimal width, decimal height, string status, DateTime reg_date, decimal cost, decimal paid)
+            string point_of_departure, string point_of_arrival, decimal weight, decimal? width,
+            decimal? height, decimal? length, string status, DateTime reg_date, decimal cost, decimal paid)
         {
             Order order = db.Order.Where(o => o.id_order == id_order).FirstOrDefault();
 
@@ -64,6 +65,7 @@ namespace Controller
             order.weight = weight;
             order.width = width;
             order.height = height;
+            order.length = length;
             order.status = status;
             order.reg_date = reg_date;
             order.cost = cost;

@@ -46,10 +46,12 @@ namespace View
             textBox6.Text = order.weight.ToString();
             textBox7.Text = order.width.ToString();
             textBox8.Text = order.height.ToString();
+            textBox13.Text = order.length.ToString();
             textBox9.Text = order.status;
             textBox10.Text = order.reg_date.ToString();
             textBox11.Text = order.cost.ToString();
             textBox12.Text = order.paid.ToString();
+            
 
             if (Visitor.user.role == "client")
             {

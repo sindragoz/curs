@@ -13,9 +13,9 @@ namespace Model
 
         private int _id_order;
 
-        private int? _id_driver;
+        private System.Nullable<int> _id_driver;
 
-        private int? _id_car;
+        private System.Nullable<int> _id_car;
 
         private int _id_client;
 
@@ -25,11 +25,13 @@ namespace Model
 
         private decimal _weight;
 
-        private decimal _width;
+        private System.Nullable<decimal> _width;
 
-        private decimal _height;
+        private System.Nullable<decimal> _height;
 
-        private DateTime _reg_date;
+        private System.Nullable<decimal> _length;
+
+        private System.DateTime _reg_date;
 
         private decimal _cost;
 
@@ -47,13 +49,13 @@ namespace Model
 
         #region Определения метода расширяемости
         partial void OnLoaded();
-        partial void OnValidate(ChangeAction action);
+        partial void OnValidate(System.Data.Linq.ChangeAction action);
         partial void OnCreated();
         partial void Onid_orderChanging(int value);
         partial void Onid_orderChanged();
-        partial void Onid_driverChanging(int? value);
+        partial void Onid_driverChanging(System.Nullable<int> value);
         partial void Onid_driverChanged();
-        partial void Onid_carChanging(int? value);
+        partial void Onid_carChanging(System.Nullable<int> value);
         partial void Onid_carChanged();
         partial void Onid_clientChanging(int value);
         partial void Onid_clientChanged();
@@ -63,11 +65,13 @@ namespace Model
         partial void Onpoint_of_arrivalChanged();
         partial void OnweightChanging(decimal value);
         partial void OnweightChanged();
-        partial void OnwidthChanging(decimal value);
+        partial void OnwidthChanging(System.Nullable<decimal> value);
         partial void OnwidthChanged();
-        partial void OnheightChanging(decimal value);
+        partial void OnheightChanging(System.Nullable<decimal> value);
         partial void OnheightChanged();
-        partial void Onreg_dateChanging(DateTime value);
+        partial void OnlengthChanging(System.Nullable<decimal> value);
+        partial void OnlengthChanged();
+        partial void Onreg_dateChanging(System.DateTime value);
         partial void Onreg_dateChanged();
         partial void OncostChanging(decimal value);
         partial void OncostChanged();
@@ -86,7 +90,7 @@ namespace Model
             OnCreated();
         }
 
-        [Column(Storage = "_id_order", AutoSync = AutoSync.OnInsert, DbType = "Int NOT NULL IDENTITY", IsPrimaryKey = true, IsDbGenerated = true)]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_id_order", AutoSync = AutoSync.OnInsert, DbType = "Int NOT NULL IDENTITY", IsPrimaryKey = true, IsDbGenerated = true)]
         public int id_order
         {
             get
@@ -106,8 +110,8 @@ namespace Model
             }
         }
 
-        [Column(Storage = "_id_driver", DbType = "Int")]
-        public int? id_driver
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_id_driver", DbType = "Int")]
+        public System.Nullable<int> id_driver
         {
             get
             {
@@ -119,7 +123,7 @@ namespace Model
                 {
                     if (this._Driver.HasLoadedOrAssignedValue)
                     {
-                        throw new ForeignKeyReferenceAlreadyHasValueException();
+                        throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
                     }
                     this.Onid_driverChanging(value);
                     this.SendPropertyChanging();
@@ -130,8 +134,8 @@ namespace Model
             }
         }
 
-        [Column(Storage = "_id_car", DbType = "Int")]
-        public int? id_car
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_id_car", DbType = "Int")]
+        public System.Nullable<int> id_car
         {
             get
             {
@@ -154,7 +158,7 @@ namespace Model
             }
         }
 
-        [Column(Storage = "_id_client", DbType = "Int NOT NULL")]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_id_client", DbType = "Int NOT NULL")]
         public int id_client
         {
             get
@@ -167,7 +171,7 @@ namespace Model
                 {
                     if (this._Client.HasLoadedOrAssignedValue)
                     {
-                        throw new ForeignKeyReferenceAlreadyHasValueException();
+                        throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
                     }
                     this.Onid_clientChanging(value);
                     this.SendPropertyChanging();
@@ -178,7 +182,7 @@ namespace Model
             }
         }
 
-        [Column(Storage = "_point_of_departure", DbType = "VarChar(50) NOT NULL", CanBeNull = false)]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_point_of_departure", DbType = "VarChar(50) NOT NULL", CanBeNull = false)]
         public string point_of_departure
         {
             get
@@ -198,7 +202,7 @@ namespace Model
             }
         }
 
-        [Column(Storage = "_point_of_arrival", DbType = "VarChar(50) NOT NULL", CanBeNull = false)]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_point_of_arrival", DbType = "VarChar(50) NOT NULL", CanBeNull = false)]
         public string point_of_arrival
         {
             get
@@ -218,7 +222,7 @@ namespace Model
             }
         }
 
-        [Column(Storage = "_weight", DbType = "Decimal(10,2) NOT NULL")]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_weight", DbType = "Decimal(10,2) NOT NULL")]
         public decimal weight
         {
             get
@@ -238,8 +242,8 @@ namespace Model
             }
         }
 
-        [Column(Storage = "_width", DbType = "Decimal(6,2) NOT NULL")]
-        public decimal width
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_width", DbType = "Decimal(6,2)")]
+        public System.Nullable<decimal> width
         {
             get
             {
@@ -258,8 +262,8 @@ namespace Model
             }
         }
 
-        [Column(Storage = "_height", DbType = "Decimal(6,2) NOT NULL")]
-        public decimal height
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_height", DbType = "Decimal(6,2)")]
+        public System.Nullable<decimal> height
         {
             get
             {
@@ -278,7 +282,27 @@ namespace Model
             }
         }
 
-        [Column(Storage = "_reg_date", DbType = "DateTime NOT NULL")]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_length", DbType = "Decimal(6,2)")]
+        public System.Nullable<decimal> length
+        {
+            get
+            {
+                return this._length;
+            }
+            set
+            {
+                if ((this._length != value))
+                {
+                    this.OnlengthChanging(value);
+                    this.SendPropertyChanging();
+                    this._length = value;
+                    this.SendPropertyChanged("length");
+                    this.OnlengthChanged();
+                }
+            }
+        }
+
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_reg_date", DbType = "DateTime NOT NULL")]
         public System.DateTime reg_date
         {
             get
@@ -298,7 +322,7 @@ namespace Model
             }
         }
 
-        [Column(Storage = "_cost", DbType = "Decimal(10,2) NOT NULL")]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_cost", DbType = "Decimal(10,2) NOT NULL")]
         public decimal cost
         {
             get
@@ -318,7 +342,7 @@ namespace Model
             }
         }
 
-        [Column(Storage = "_paid", DbType = "Decimal(10,2) NOT NULL")]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_paid", DbType = "Decimal(10,2) NOT NULL")]
         public decimal paid
         {
             get
@@ -338,7 +362,7 @@ namespace Model
             }
         }
 
-        [Column(Storage = "_status", DbType = "VarChar(30) NOT NULL", CanBeNull = false)]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_status", DbType = "VarChar(30) NOT NULL", CanBeNull = false)]
         public string status
         {
             get
@@ -358,7 +382,7 @@ namespace Model
             }
         }
 
-        [Association(Name = "Order_Profit_driver", Storage = "_Profit_driver", ThisKey = "id_order", OtherKey = "id_order")]
+        [global::System.Data.Linq.Mapping.AssociationAttribute(Name = "Order_Profit_driver", Storage = "_Profit_driver", ThisKey = "id_order", OtherKey = "id_order")]
         public EntitySet<Profit_driver> Profit_driver
         {
             get
@@ -371,7 +395,7 @@ namespace Model
             }
         }
 
-        [Association(Name = "Car_Order", Storage = "_Car", ThisKey = "id_car", OtherKey = "id_car", IsForeignKey = true, DeleteRule = "CASCADE")]
+        [global::System.Data.Linq.Mapping.AssociationAttribute(Name = "Car_Order", Storage = "_Car", ThisKey = "id_car", OtherKey = "id_car", IsForeignKey = true, DeleteRule = "CASCADE")]
         public Car Car
         {
             get
@@ -405,7 +429,7 @@ namespace Model
             }
         }
 
-        [Association(Name = "Client_Order", Storage = "_Client", ThisKey = "id_client", OtherKey = "id_client", IsForeignKey = true, DeleteOnNull = true, DeleteRule = "CASCADE")]
+        [global::System.Data.Linq.Mapping.AssociationAttribute(Name = "Client_Order", Storage = "_Client", ThisKey = "id_client", OtherKey = "id_client", IsForeignKey = true, DeleteOnNull = true, DeleteRule = "CASCADE")]
         public Client Client
         {
             get
@@ -439,7 +463,7 @@ namespace Model
             }
         }
 
-        [Association(Name = "Driver_Order", Storage = "_Driver", ThisKey = "id_driver", OtherKey = "id_driver", IsForeignKey = true, DeleteRule = "CASCADE")]
+        [global::System.Data.Linq.Mapping.AssociationAttribute(Name = "Driver_Order", Storage = "_Driver", ThisKey = "id_driver", OtherKey = "id_driver", IsForeignKey = true, DeleteRule = "CASCADE")]
         public Driver Driver
         {
             get
@@ -508,11 +532,12 @@ namespace Model
         public override string ToString()
         {
             return point_of_departure + " || " + _point_of_arrival + " || " +
-                _weight + " || " + _width + " || "   + height + " || "
+                _weight + " || " + _width + " || " + _height + " || " + _length + " || "
                 + _reg_date.ToString("dd'/'MM'/'yyyy") + " || " + _cost + " || " +
                     _paid + " || " + _status;
 
         }
     }
+
 
 }

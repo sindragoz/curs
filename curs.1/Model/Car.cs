@@ -6,7 +6,7 @@ using System;
 
 namespace Model
 {
-    [Table(Name = "dbo.Car")]
+    [global::System.Data.Linq.Mapping.TableAttribute(Name = "dbo.Car")]
     public partial class Car : INotifyPropertyChanging, INotifyPropertyChanged
     {
 
@@ -25,6 +25,8 @@ namespace Model
         private decimal _heigth;
 
         private bool _status;
+
+        private decimal _length;
 
         private EntitySet<Order> _Order;
 
@@ -46,6 +48,8 @@ namespace Model
         partial void OnheigthChanged();
         partial void OnstatusChanging(bool value);
         partial void OnstatusChanged();
+        partial void OnlengthChanging(System.Nullable<decimal> value);
+        partial void OnlengthChanged();
         #endregion
 
         public Car()
@@ -54,7 +58,7 @@ namespace Model
             OnCreated();
         }
 
-        [Column(Storage = "_id_car", AutoSync = AutoSync.OnInsert, DbType = "Int NOT NULL IDENTITY", IsPrimaryKey = true, IsDbGenerated = true)]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_id_car", AutoSync = AutoSync.OnInsert, DbType = "Int NOT NULL IDENTITY", IsPrimaryKey = true, IsDbGenerated = true)]
         public int id_car
         {
             get
@@ -74,7 +78,7 @@ namespace Model
             }
         }
 
-        [Column(Storage = "_number", DbType = "NVarChar(50) NOT NULL", CanBeNull = false)]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_number", DbType = "NVarChar(50) NOT NULL", CanBeNull = false)]
         public string number
         {
             get
@@ -94,7 +98,7 @@ namespace Model
             }
         }
 
-        [Column(Storage = "_brand", DbType = "NVarChar(50) NOT NULL", CanBeNull = false)]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_brand", DbType = "NVarChar(50) NOT NULL", CanBeNull = false)]
         public string brand
         {
             get
@@ -114,7 +118,7 @@ namespace Model
             }
         }
 
-        [Column(Storage = "_carrying_capacity", DbType = "Decimal(10,2) NOT NULL")]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_carrying_capacity", DbType = "Decimal(10,2) NOT NULL")]
         public decimal carrying_capacity
         {
             get
@@ -134,7 +138,7 @@ namespace Model
             }
         }
 
-        [Column(Storage = "_width", DbType = "Decimal(10,2) NOT NULL")]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_width", DbType = "Decimal(10,2) NOT NULL")]
         public decimal width
         {
             get
@@ -154,7 +158,7 @@ namespace Model
             }
         }
 
-        [Column(Storage = "_heigth", DbType = "Decimal(10,2) NOT NULL")]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_heigth", DbType = "Decimal(10,2) NOT NULL")]
         public decimal heigth
         {
             get
@@ -174,7 +178,7 @@ namespace Model
             }
         }
 
-        [Column(Storage = "_status", DbType = "Bit NOT NULL")]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_status", DbType = "Bit NOT NULL")]
         public bool status
         {
             get
@@ -194,7 +198,27 @@ namespace Model
             }
         }
 
-        [Association(Name = "Car_Order", Storage = "_Order", ThisKey = "id_car", OtherKey = "id_car")]
+        [Column(Storage = "_length", DbType = "Decimal(10,2) NOT NULL")]
+        public decimal length
+        {
+            get
+            {
+                return this._length;
+            }
+            set
+            {
+                if ((this._length != value))
+                {
+                    this.OnlengthChanging(value);
+                    this.SendPropertyChanging();
+                    this._length = value;
+                    this.SendPropertyChanged("length");
+                    this.OnlengthChanged();
+                }
+            }
+        }
+
+        [global::System.Data.Linq.Mapping.AssociationAttribute(Name = "Car_Order", Storage = "_Order", ThisKey = "id_car", OtherKey = "id_car")]
         public EntitySet<Order> Order
         {
             get
@@ -238,12 +262,12 @@ namespace Model
             this.SendPropertyChanging();
             entity.Car = null;
         }
-
         public override string ToString()
         {
             return number + " || " + brand + " || " + carrying_capacity + " || " + width
-                + " || " + heigth + " || " + status;
+                + " || " + heigth + " || "+ length + " || " + " || " + status;
         }
     }
+
 
 }

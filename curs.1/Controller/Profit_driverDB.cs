@@ -39,7 +39,13 @@ namespace Controller
             return (order.cost/10);
         }
 
+        public string StringProfit(Profit_driver profit)
+        {
+             Driver driver = db.Driver.Where(p => p.id_driver == profit.id_driver).First();
+            return driver.full_name + " || " + profit.date.ToString("dd'/'MM'/'yyyy")
+                + " || " + profit.value;
 
+        }
 
     }
 }

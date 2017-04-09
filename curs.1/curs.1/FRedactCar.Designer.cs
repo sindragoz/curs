@@ -40,6 +40,8 @@
             this.label5 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.textBox6 = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // textBox1
@@ -72,7 +74,7 @@
             // 
             // textBox5
             // 
-            this.textBox5.Location = new System.Drawing.Point(175, 262);
+            this.textBox5.Location = new System.Drawing.Point(175, 255);
             this.textBox5.Name = "textBox5";
             this.textBox5.Size = new System.Drawing.Size(143, 20);
             this.textBox5.TabIndex = 4;
@@ -124,7 +126,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(132, 343);
+            this.button1.Location = new System.Drawing.Point(141, 370);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 12;
@@ -135,18 +137,36 @@
             // checkBox1
             // 
             this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(109, 308);
+            this.checkBox1.Location = new System.Drawing.Point(121, 347);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(54, 17);
             this.checkBox1.TabIndex = 13;
             this.checkBox1.Text = "status";
             this.checkBox1.UseVisualStyleBackColor = true;
             // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(32, 300);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(36, 13);
+            this.label6.TabIndex = 14;
+            this.label6.Text = "length";
+            // 
+            // textBox6
+            // 
+            this.textBox6.Location = new System.Drawing.Point(175, 297);
+            this.textBox6.Name = "textBox6";
+            this.textBox6.Size = new System.Drawing.Size(143, 20);
+            this.textBox6.TabIndex = 15;
+            // 
             // FRedactCar
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(377, 405);
+            this.Controls.Add(this.textBox6);
+            this.Controls.Add(this.label6);
             this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label5);
@@ -180,5 +200,7 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button button1;
         public System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.Label label6;
+        public System.Windows.Forms.TextBox textBox6;
     }
 }
