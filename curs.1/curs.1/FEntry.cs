@@ -17,28 +17,22 @@ namespace View
     {
         private DBDataContext db;
 
-        Visitor userdb;
+        Visitor visitordb;
         public FEntry(DBDataContext db)
         {
             InitializeComponent();
             this.db = db;
-            userdb = new Visitor(db);
+            visitordb = new Visitor(db);
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
             string login = textBox1.Text;
             string password  = textBox2.Text;
-            //userdb.log_in(login, password);
-            //if (userdb.User!=null)
-            //{
-            //    MessageBox.Show(userdb.User.login);
-            //    Close();
-            //}else
-            //    MessageBox.Show("nope");
-            
-            
-            
+
+            visitordb.Log_in(login, password);
+
+            Close();
         }
 
        

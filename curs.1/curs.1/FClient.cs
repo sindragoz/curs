@@ -21,7 +21,7 @@ namespace View
 
          int id_client;
 
-         string full_name;
+        string full_name;
 
          string phone_number;
 
@@ -32,6 +32,7 @@ namespace View
         string password;
 
         ClientDB clientdb;
+
 
         public FClient(DBDataContext db)
         {
@@ -49,8 +50,12 @@ namespace View
 
                 FillFields();
 
-                clientdb.Insert(full_name, phone_number, company, login, password);
+                login = f_red.textBox5.Text;
 
+                password = f_red.textBox6.Text;
+                
+                clientdb.Insert(login, password, full_name, phone_number, company);
+                
                 showbd();
             }
             catch (Exception ex)
@@ -84,7 +89,7 @@ namespace View
 
                 FillFields();
 
-                clientdb.Update(client.id_client, full_name, phone_number, company, login, password);
+                clientdb.Update(client.id_client, full_name, phone_number, company);
 
                 showbd();
             }
@@ -120,10 +125,6 @@ namespace View
             phone_number = f_red.textBox2.Text;
 
             company = f_red.textBox3.Text;
-
-            login = f_red.textBox4.Text;
-
-            password =  f_red.textBox5.Text;
         }
 
     }

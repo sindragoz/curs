@@ -18,6 +18,14 @@ namespace View
         public FRedactOrder()
         {
             InitializeComponent();
+            textBox1.Visible = false;
+            textBox2.Visible = false;
+            textBox3.Visible = false;
+            textBox9.Visible = false;
+            textBox10.Visible = false;
+            textBox11.Visible = false;
+            textBox12.Visible = false;
+
         }
 
         public FRedactOrder(Order order)
@@ -31,7 +39,7 @@ namespace View
             textBox6.Text = order.weight.ToString();
             textBox7.Text = order.width.ToString();
             textBox8.Text = order.height.ToString();
-            textBox9.Text = order.type_cargo;
+            textBox9.Text = order.status;
             textBox10.Text = order.reg_date.ToString();
             textBox11.Text = order.cost.ToString();
             textBox12.Text = order.paid.ToString();

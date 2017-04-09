@@ -20,9 +20,9 @@ namespace View
 
         int id_order;
 
-        int id_driver;
+        int? id_driver;
 
-        int id_car;
+        int? id_car;
 
         int id_client;
 
@@ -36,7 +36,7 @@ namespace View
 
         decimal height;
 
-        string type_cargo;
+        string status;
 
         DateTime reg_date;
 
@@ -56,23 +56,24 @@ namespace View
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            try
-            {
+            //try
+            //{
                 f_red = new FRedactOrder();
 
                 FillFields();
 
-                orderdb.Insert(id_driver, id_car, id_client, point_of_departure,
-                    point_of_arrival, weight, width, height, type_cargo, reg_date, cost, paid);
+                Order order = new Order();
+
+                orderdb.Insert(point_of_departure, point_of_arrival, weight, width, height);
 
                 showbd();
 
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-        }
+            //}
+            //catch (Exception ex)
+            //{
+            //    MessageBox.Show(ex.Message);
+            //}
+}
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
@@ -98,8 +99,23 @@ namespace View
 
                 FillFields();
 
+               ////////////////////////
+                id_driver = order.id_driver;
+
+                 id_car = order.id_car;
+
+                id_client = order.id_client;
+
+                reg_date = Convert.ToDateTime(f_red.textBox10.Text);
+
+                status = f_red.textBox9.Text;
+
+                cost = Convert.ToDecimal(f_red.textBox11.Text);
+
+                paid = Convert.ToDecimal(f_red.textBox12.Text);
+                    ///////////////////
                 orderdb.Update(order.id_order, id_driver, id_car, id_client, point_of_departure,
-                    point_of_arrival, weight, width, height, type_cargo, reg_date, cost, paid);
+                    point_of_arrival, weight, width, height, status, reg_date, cost, paid);
 
                 showbd();
             }
@@ -107,7 +123,7 @@ namespace View
             {
                 MessageBox.Show(ex.Message);
             }
-        }
+}
 
         void showbd()
         {
@@ -129,12 +145,6 @@ namespace View
         {
             f_red.ShowDialog();
 
-            id_driver = Convert.ToInt32(f_red.textBox1.Text);
-
-            id_car = Convert.ToInt32(f_red.textBox2.Text);
-
-            id_client = Convert.ToInt32(f_red.textBox3.Text);
-
             point_of_departure = f_red.textBox4.Text;
 
             point_of_arrival = f_red.textBox5.Text;
@@ -145,13 +155,7 @@ namespace View
 
             height = Convert.ToDecimal(f_red.textBox8.Text);
 
-            type_cargo = f_red.textBox9.Text;
-
-            reg_date = Convert.ToDateTime(f_red.textBox10.Text);
-
-            cost = Convert.ToInt32(f_red.textBox11.Text);
-
-            paid = Convert.ToInt32(f_red.textBox12.Text);
+          
         }
     }
 

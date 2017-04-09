@@ -130,6 +130,9 @@
     <EmbeddedResource Include="FMain.resx">
       <DependentUpon>FMain.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FOrder.resx">
+      <DependentUpon>FOrder.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FProfit_driver.resx">
       <DependentUpon>FProfit_driver.cs</DependentUpon>
     </EmbeddedResource>
@@ -141,6 +144,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FRedactDriver.resx">
       <DependentUpon>FRedactDriver.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FRedactOrder.resx">
+      <DependentUpon>FRedactOrder.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

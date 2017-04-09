@@ -7,31 +7,34 @@ using System.Threading.Tasks;
 
 namespace Controller
 {
-   public  class Visitor
+   public  class UserDB
     {
 
         private DBDataContext db;
 
-        public Visitor(DBDataContext db)
+        public UserDB(DBDataContext db)
         {
             this.db = db;
         }
 
-     ///   role
+        public User Insert(string login,string password, string role)
+        {
+            User user = new User();
+            user.login = login;
+            user.password = password;
+            user.role = role;
+            db.User.InsertOnSubmit(user);
+            db.SubmitChanges();
+            return user;
+        }
 
-        //public Client User
-        //{
-        //    get { return user; }
-        //}
+        public void Delete(int id_user)
+        {
+            User user = db.User.Where(cl => cl.Id_user == id_user).FirstOrDefault();
+            db.User.DeleteOnSubmit(user);
+            db.SubmitChanges();
+        }
 
-        //public void log_in(string login, string pass)
-        //{
-        //    Client client;
-        //    client = db.Client.Where(c => (c.login == login && c.password == pass)).FirstOrDefault();
-        //    if (client != null)
-        //    {
-        //        user = client;
-        //    }
-        //}
+
     }
 }

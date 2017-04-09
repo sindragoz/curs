@@ -13,9 +13,9 @@ namespace Model
 
         private int _id_order;
 
-        private int _id_driver;
+        private int? _id_driver;
 
-        private int _id_car;
+        private int? _id_car;
 
         private int _id_client;
 
@@ -29,13 +29,13 @@ namespace Model
 
         private decimal _height;
 
-        private string _type_cargo;
-
         private DateTime _reg_date;
 
         private decimal _cost;
 
         private decimal _paid;
+
+        private string _status;
 
         private EntitySet<Profit_driver> _Profit_driver;
 
@@ -51,9 +51,9 @@ namespace Model
         partial void OnCreated();
         partial void Onid_orderChanging(int value);
         partial void Onid_orderChanged();
-        partial void Onid_driverChanging(int value);
+        partial void Onid_driverChanging(int? value);
         partial void Onid_driverChanged();
-        partial void Onid_carChanging(int value);
+        partial void Onid_carChanging(int? value);
         partial void Onid_carChanged();
         partial void Onid_clientChanging(int value);
         partial void Onid_clientChanged();
@@ -67,14 +67,14 @@ namespace Model
         partial void OnwidthChanged();
         partial void OnheightChanging(decimal value);
         partial void OnheightChanged();
-        partial void Ontype_cargoChanging(string value);
-        partial void Ontype_cargoChanged();
-        partial void Onreg_dateChanging(System.DateTime value);
+        partial void Onreg_dateChanging(DateTime value);
         partial void Onreg_dateChanged();
         partial void OncostChanging(decimal value);
         partial void OncostChanged();
         partial void OnpaidChanging(decimal value);
         partial void OnpaidChanged();
+        partial void OnstatusChanging(string value);
+        partial void OnstatusChanged();
         #endregion
 
         public Order()
@@ -106,8 +106,8 @@ namespace Model
             }
         }
 
-        [Column(Storage = "_id_driver", DbType = "Int NOT NULL")]
-        public int id_driver
+        [Column(Storage = "_id_driver", DbType = "Int")]
+        public int? id_driver
         {
             get
             {
@@ -130,8 +130,8 @@ namespace Model
             }
         }
 
-        [Column(Storage = "_id_car", DbType = "Int NOT NULL")]
-        public int id_car
+        [Column(Storage = "_id_car", DbType = "Int")]
+        public int? id_car
         {
             get
             {
@@ -143,7 +143,7 @@ namespace Model
                 {
                     if (this._Car.HasLoadedOrAssignedValue)
                     {
-                        throw new ForeignKeyReferenceAlreadyHasValueException();
+                        throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
                     }
                     this.Onid_carChanging(value);
                     this.SendPropertyChanging();
@@ -278,28 +278,8 @@ namespace Model
             }
         }
 
-        [Column(Storage = "_type_cargo", DbType = "VarChar(30) NOT NULL", CanBeNull = false)]
-        public string type_cargo
-        {
-            get
-            {
-                return this._type_cargo;
-            }
-            set
-            {
-                if ((this._type_cargo != value))
-                {
-                    this.Ontype_cargoChanging(value);
-                    this.SendPropertyChanging();
-                    this._type_cargo = value;
-                    this.SendPropertyChanged("type_cargo");
-                    this.Ontype_cargoChanged();
-                }
-            }
-        }
-
         [Column(Storage = "_reg_date", DbType = "DateTime NOT NULL")]
-        public DateTime reg_date
+        public System.DateTime reg_date
         {
             get
             {
@@ -358,6 +338,26 @@ namespace Model
             }
         }
 
+        [Column(Storage = "_status", DbType = "VarChar(30) NOT NULL", CanBeNull = false)]
+        public string status
+        {
+            get
+            {
+                return this._status;
+            }
+            set
+            {
+                if ((this._status != value))
+                {
+                    this.OnstatusChanging(value);
+                    this.SendPropertyChanging();
+                    this._status = value;
+                    this.SendPropertyChanged("status");
+                    this.OnstatusChanged();
+                }
+            }
+        }
+
         [Association(Name = "Order_Profit_driver", Storage = "_Profit_driver", ThisKey = "id_order", OtherKey = "id_order")]
         public EntitySet<Profit_driver> Profit_driver
         {
@@ -371,7 +371,7 @@ namespace Model
             }
         }
 
-        [Association(Name = "Car_Order", Storage = "_Car", ThisKey = "id_car", OtherKey = "id_car", IsForeignKey = true, DeleteOnNull = true, DeleteRule = "CASCADE")]
+        [Association(Name = "Car_Order", Storage = "_Car", ThisKey = "id_car", OtherKey = "id_car", IsForeignKey = true, DeleteRule = "CASCADE")]
         public Car Car
         {
             get
@@ -398,7 +398,7 @@ namespace Model
                     }
                     else
                     {
-                        this._id_car = default(int);
+                        this._id_car = default(Nullable<int>);
                     }
                     this.SendPropertyChanged("Car");
                 }
@@ -439,7 +439,7 @@ namespace Model
             }
         }
 
-        [Association(Name = "Driver_Order", Storage = "_Driver", ThisKey = "id_driver", OtherKey = "id_driver", IsForeignKey = true, DeleteOnNull = true, DeleteRule = "CASCADE")]
+        [Association(Name = "Driver_Order", Storage = "_Driver", ThisKey = "id_driver", OtherKey = "id_driver", IsForeignKey = true, DeleteRule = "CASCADE")]
         public Driver Driver
         {
             get
@@ -466,7 +466,7 @@ namespace Model
                     }
                     else
                     {
-                        this._id_driver = default(int);
+                        this._id_driver = default(Nullable<int>);
                     }
                     this.SendPropertyChanged("Driver");
                 }
@@ -505,14 +505,14 @@ namespace Model
             entity.Order = null;
         }
 
-
         public override string ToString()
         {
-            return point_of_departure + " || " +
-                point_of_arrival + " || " + weight + " || " + width + " || " + height + " || "
-                + type_cargo + " || " + reg_date.Date + " || " + cost + " || " + paid;
-        }
+            return point_of_departure + " || " + _point_of_arrival + " || " +
+                _weight + " || " + _width + " || " + _point_of_arrival +
+                    height + " || " + _reg_date + " || " + _cost + " || " +
+                    _paid + " || " + _status;
 
+        }
     }
 
 }

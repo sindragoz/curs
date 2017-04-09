@@ -30,7 +30,7 @@
         {
             this.btnAdd = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
-            this.Update = new System.Windows.Forms.Button();
+            this.btnUpdate = new System.Windows.Forms.Button();
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.SuspendLayout();
             // 
@@ -54,15 +54,15 @@
             this.btnDelete.UseVisualStyleBackColor = true;
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
-            // Update
+            // btnUpdate
             // 
-            this.Update.Location = new System.Drawing.Point(44, 163);
-            this.Update.Name = "Update";
-            this.Update.Size = new System.Drawing.Size(75, 38);
-            this.Update.TabIndex = 2;
-            this.Update.Text = "update";
-            this.Update.UseVisualStyleBackColor = true;
-            this.Update.Click += new System.EventHandler(this.Update_Click);
+            this.btnUpdate.Location = new System.Drawing.Point(44, 163);
+            this.btnUpdate.Name = "btnUpdate";
+            this.btnUpdate.Size = new System.Drawing.Size(75, 38);
+            this.btnUpdate.TabIndex = 2;
+            this.btnUpdate.Text = "update";
+            this.btnUpdate.UseVisualStyleBackColor = true;
+            this.btnUpdate.Click += new System.EventHandler(this.Update_Click);
             // 
             // listBox1
             // 
@@ -78,7 +78,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(617, 453);
             this.Controls.Add(this.listBox1);
-            this.Controls.Add(this.Update);
+            this.Controls.Add(this.btnUpdate);
             this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.btnAdd);
             this.Name = "FCar";
@@ -91,7 +91,7 @@
 
         private System.Windows.Forms.Button btnAdd;
         private System.Windows.Forms.Button btnDelete;
-        private System.Windows.Forms.Button Update;
+        private System.Windows.Forms.Button btnUpdate;
         private System.Windows.Forms.ListBox listBox1;
     }
 }

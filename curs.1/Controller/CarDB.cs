@@ -55,5 +55,23 @@ namespace Controller
         {
             return db.Car.Where(c => c.id_car >= 0).ToList();
         }
+
+        public int? FindFreeCar()
+        {
+            Car car = db.Car.Where(c => c.status).FirstOrDefault();
+            if (car != null)
+            {
+                car.status = false;
+                return car.id_car;
+            }
+            return null;
+           
+        }
+
+        public void SetFree(int? id_car)
+        {
+            Car car = db.Car.Where(c => c.id_car == id_car).FirstOrDefault();
+            car.status = true;
+        }
     }
 }

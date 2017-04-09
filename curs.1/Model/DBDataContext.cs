@@ -63,6 +63,14 @@ namespace Model
             }
         }
 
+        public Table<User> User
+        {
+            get
+            {
+                return this.GetTable<User>();
+            }
+        }
+
     }
 
 }

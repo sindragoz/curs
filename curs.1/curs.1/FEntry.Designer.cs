@@ -59,13 +59,16 @@
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(170, 20);
             this.textBox1.TabIndex = 2;
+            this.textBox1.Text = "din228";
             // 
             // textBox2
             // 
             this.textBox2.Location = new System.Drawing.Point(154, 63);
             this.textBox2.Name = "textBox2";
+            this.textBox2.PasswordChar = '*';
             this.textBox2.Size = new System.Drawing.Size(170, 20);
             this.textBox2.TabIndex = 3;
+            this.textBox2.Text = "1";
             // 
             // button1
             // 

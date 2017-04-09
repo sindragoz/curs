@@ -24,9 +24,8 @@ namespace View
             textBox1.Text = client.full_name;
             textBox2.Text = client.phone_number;
             textBox3.Text = client.company;
-            textBox4.Text = client.login;
-            textBox5.Text = client.password;
-            textBox5.Enabled = false;
+            textBox5.Visible = false;
+            textBox6.Visible = false;
         }
 
         private void button1_Click(object sender, EventArgs e)

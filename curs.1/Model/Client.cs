@@ -13,39 +13,38 @@ namespace Model
 
         private int _id_client;
 
+        private int _id_user;
+
         private string _full_name;
 
         private string _phone_number;
 
         private string _company;
 
-        private string _login;
-
-        private string _password;
-
         private EntitySet<Order> _Order;
+
+        private EntityRef<User> _User;
 
         #region Определения метода расширяемости
         partial void OnLoaded();
-        partial void OnValidate(ChangeAction action);
+        partial void OnValidate(System.Data.Linq.ChangeAction action);
         partial void OnCreated();
         partial void Onid_clientChanging(int value);
         partial void Onid_clientChanged();
+        partial void Onid_userChanging(int value);
+        partial void Onid_userChanged();
         partial void Onfull_nameChanging(string value);
         partial void Onfull_nameChanged();
         partial void Onphone_numberChanging(string value);
         partial void Onphone_numberChanged();
         partial void OncompanyChanging(string value);
         partial void OncompanyChanged();
-        partial void OnloginChanging(string value);
-        partial void OnloginChanged();
-        partial void OnpasswordChanging(string value);
-        partial void OnpasswordChanged();
         #endregion
 
         public Client()
         {
             this._Order = new EntitySet<Order>(new Action<Order>(this.attach_Order), new Action<Order>(this.detach_Order));
+            this._User = default(EntityRef<User>);
             OnCreated();
         }
 
@@ -65,6 +64,30 @@ namespace Model
                     this._id_client = value;
                     this.SendPropertyChanged("id_client");
                     this.Onid_clientChanged();
+                }
+            }
+        }
+
+        [Column(Storage = "_id_user", DbType = "Int NOT NULL")]
+        public int id_user
+        {
+            get
+            {
+                return this._id_user;
+            }
+            set
+            {
+                if ((this._id_user != value))
+                {
+                    if (this._User.HasLoadedOrAssignedValue)
+                    {
+                        throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+                    }
+                    this.Onid_userChanging(value);
+                    this.SendPropertyChanging();
+                    this._id_user = value;
+                    this.SendPropertyChanged("id_user");
+                    this.Onid_userChanged();
                 }
             }
         }
@@ -129,46 +152,6 @@ namespace Model
             }
         }
 
-        [Column(Storage = "_login", DbType = "VarChar(30) NOT NULL", CanBeNull = false)]
-        public string login
-        {
-            get
-            {
-                return this._login;
-            }
-            set
-            {
-                if ((this._login != value))
-                {
-                    this.OnloginChanging(value);
-                    this.SendPropertyChanging();
-                    this._login = value;
-                    this.SendPropertyChanged("login");
-                    this.OnloginChanged();
-                }
-            }
-        }
-
-        [Column(Storage = "_password", DbType = "VarChar(16) NOT NULL", CanBeNull = false)]
-        public string password
-        {
-            get
-            {
-                return this._password;
-            }
-            set
-            {
-                if ((this._password != value))
-                {
-                    this.OnpasswordChanging(value);
-                    this.SendPropertyChanging();
-                    this._password = value;
-                    this.SendPropertyChanged("password");
-                    this.OnpasswordChanged();
-                }
-            }
-        }
-
         [Association(Name = "Client_Order", Storage = "_Order", ThisKey = "id_client", OtherKey = "id_client")]
         public EntitySet<Order> Order
         {
@@ -179,6 +162,40 @@ namespace Model
             set
             {
                 this._Order.Assign(value);
+            }
+        }
+
+        [Association(Name = "User_Client", Storage = "_User", ThisKey = "id_user", OtherKey = "Id_user", IsForeignKey = true, DeleteOnNull = true, DeleteRule = "CASCADE")]
+        public User User
+        {
+            get
+            {
+                return this._User.Entity;
+            }
+            set
+            {
+                User previousValue = this._User.Entity;
+                if (((previousValue != value)
+                            || (this._User.HasLoadedOrAssignedValue == false)))
+                {
+                    this.SendPropertyChanging();
+                    if ((previousValue != null))
+                    {
+                        this._User.Entity = null;
+                        previousValue.Client.Remove(this);
+                    }
+                    this._User.Entity = value;
+                    if ((value != null))
+                    {
+                        value.Client.Add(this);
+                        this._id_user = value.Id_user;
+                    }
+                    else
+                    {
+                        this._id_user = default(int);
+                    }
+                    this.SendPropertyChanged("User");
+                }
             }
         }
 
@@ -216,11 +233,7 @@ namespace Model
 
         public override string ToString()
         {
-            if (company != null)
-            {
-                return full_name + " || " + phone_number + " || " + company + " || " + login;
-            }
-            return full_name + " || " + phone_number + " || " + login;
+            return full_name + " || " + phone_number + " || " + company + " || ";
         }
     }
 
