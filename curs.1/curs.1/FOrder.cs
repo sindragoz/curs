@@ -26,7 +26,9 @@ namespace View
         decimal weight;
 
         decimal? width;
+
         decimal? height;
+
         decimal? length;
 
         string status;
@@ -59,8 +61,8 @@ namespace View
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            //try
-            //{
+            try
+            {
                 f_red = new FRedactOrder();
 
                 FillFields();
@@ -71,11 +73,11 @@ namespace View
 
                 showbd();
 
-            //}
-            //catch (Exception ex)
-            //{
-            //    MessageBox.Show(ex.Message);
-            //}
+             }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
