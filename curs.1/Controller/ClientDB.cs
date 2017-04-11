@@ -1,4 +1,5 @@
 ﻿using Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -13,18 +14,20 @@ namespace Controller
             this.db = db;
             userdb = new UserDB(db);
         }
-        
+
         public void Insert(string login, string password, string full_name, string phone_number, string company)
         {
-            User user = userdb.Insert(login, password, "client");
+                User user = userdb.Insert(login, password, "client");
 
-            Client client = new Client();
-            client.id_user = user.Id_user;
-            client.full_name = full_name;
-            client.phone_number = phone_number;
-            client.company = company;
-            db.Client.InsertOnSubmit(client);
-            db.SubmitChanges();
+                Client client = new Client();
+                client.id_user = user.Id_user;
+                client.full_name = full_name;
+                client.phone_number = phone_number;
+                client.company = company;
+                db.Client.InsertOnSubmit(client);
+                db.SubmitChanges();
+
+
         }
 
 

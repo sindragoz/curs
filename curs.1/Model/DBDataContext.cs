@@ -15,11 +15,12 @@ namespace Model
         private static MappingSource mappingSource = new AttributeMappingSource();
         
         partial void OnCreated();
-
+        string connection;
 
         public DBDataContext(string connection) :
                 base(connection, mappingSource)
         {
+            this.connection = connection;
             OnCreated();
         }
 

@@ -32,8 +32,7 @@ namespace View
                 listBox1.Items.Clear();
                 foreach (var v in profit_driverdb.Show())
                 {
-                    // listBox1.Items.Add(v);
-                    textBox1.Text += profit_driverdb.StringProfit(v) + "\r\n";
+                     listBox1.Items.Add(v);
                 }
             }
             catch (Exception ex)

@@ -22,9 +22,9 @@ namespace Controller
 
 
         public void Insert(string point_of_departure, string point_of_arrival, decimal weight,
-            decimal? width, decimal? height, decimal? length)
+            decimal? width, decimal? height, decimal? length, bool express, string comment)
         {
-            Order order = new Order();
+            Order order = new Order(db);
 
             
             order.id_driver = driverdb.FindFreeDriver();
@@ -40,7 +40,8 @@ namespace Controller
             order.width = width;
             order.height = height;
             order.length = length;
-
+            order.express = express;
+            order.comment = comment;
             order.id_car = cardb.FindFreeCar(order);
 
             order.reg_date = DateTime.Now;
@@ -53,7 +54,8 @@ namespace Controller
 
         public void Update(int id_order, int? id_driver, int? id_car, int id_client,
             string point_of_departure, string point_of_arrival, decimal weight, decimal? width,
-            decimal? height, decimal? length, string status, DateTime reg_date, decimal cost, decimal paid)
+            decimal? height, decimal? length, string status, DateTime reg_date, decimal cost, 
+            decimal paid, bool express, string comment)
         {
             Order order = db.Order.Where(o => o.id_order == id_order).FirstOrDefault();
 
@@ -70,6 +72,8 @@ namespace Controller
             order.reg_date = reg_date;
             order.cost = cost;
             order.paid = paid;
+            order.express = express;
+            order.comment = comment;
 
             if(order.status == "готово")
             {
@@ -124,9 +128,10 @@ namespace Controller
         private decimal CountCost(Order order)
         {
             /*
-             * 1км = 23р
+             * 1км = 16р
              * за вес больше 500кг цена увеличивается на 5% за каждые 50кг
              * постоянным клиентом скидка 10%
+             * за экспресс доставку надбавка 50%
              */
 
             ClientDB clientdb = new ClientDB(db);
@@ -135,7 +140,6 @@ namespace Controller
             int good_weight = 500;
             double per_cent = 0.05;
             double discount = 0.1;
-
 
             decimal cost;
             double distance = 100;  //order.point_of_departure - order.point_of_arrival;
@@ -149,7 +153,10 @@ namespace Controller
             {
                 cost -= cost*(decimal)discount;
             }
-
+            if (order.express)
+            {
+                cost += cost / 2;
+            }
             return cost;
         }
 
@@ -164,8 +171,6 @@ namespace Controller
                     db.SubmitChanges();
                 }
             }
-            
-            
         }
 
         public void SetCar()

@@ -30,6 +30,7 @@ namespace Model
 
         private EntitySet<Order> _Order;
 
+
         #region Определения метода расширяемости
         partial void OnLoaded();
         partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -57,6 +58,8 @@ namespace Model
             this._Order = new EntitySet<Order>(new Action<Order>(this.attach_Order), new Action<Order>(this.detach_Order));
             OnCreated();
         }
+
+       
 
         [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_id_car", AutoSync = AutoSync.OnInsert, DbType = "Int NOT NULL IDENTITY", IsPrimaryKey = true, IsDbGenerated = true)]
         public int id_car

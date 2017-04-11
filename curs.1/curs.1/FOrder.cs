@@ -39,6 +39,11 @@ namespace View
 
         decimal paid;
 
+        string comment;
+
+        bool express;
+
+
         OrderDB orderdb;
 
         public bool exit = true;
@@ -52,6 +57,7 @@ namespace View
             if (Visitor.user.role != "client")
             {
                 button1.Visible = false;
+                btnAdd.Visible = false;
             }else
             {
                 btnDelete.Visible = false;
@@ -69,7 +75,8 @@ namespace View
 
                 Order order = new Order();
 
-                orderdb.Insert(point_of_departure, point_of_arrival, weight, width, height, length);
+                orderdb.Insert(point_of_departure, point_of_arrival, weight, width, height, 
+                    length, express, comment);
 
                 showbd();
 
@@ -112,7 +119,8 @@ namespace View
 
 
                 orderdb.Update(order.id_order, id_driver, id_car, id_client, point_of_departure,
-                    point_of_arrival, weight, width, height, length, status, reg_date, cost, paid);
+                    point_of_arrival, weight, width, height, length, status, reg_date, cost,
+                    paid, express, comment);
 
                 showbd();
             }
@@ -159,6 +167,9 @@ namespace View
 
             weight = Convert.ToDecimal(f_red.textBox6.Text);
 
+            comment = f_red.richTextBox1.Text;
+
+            express = f_red.checkBox1.Checked;
 
             if (f_red.textBox7.Text != "")
             {

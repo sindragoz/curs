@@ -18,7 +18,7 @@ namespace Controller
 
         public void Insert(int id_driver, int id_order)
         {
-            Profit_driver profit = new Profit_driver();
+            Profit_driver profit = new Profit_driver(db);
             profit.id_driver = id_driver;
             profit.id_order = id_order;
             profit.date = DateTime.Now;
@@ -38,14 +38,7 @@ namespace Controller
             Order order = db.Order.Where(o => o.id_order == id_order).FirstOrDefault();
             return (order.cost/10);
         }
-
-        public string StringProfit(Profit_driver profit)
-        {
-             Driver driver = db.Driver.Where(p => p.id_driver == profit.id_driver).First();
-            return driver.full_name + " || " + profit.date.ToString("dd'/'MM'/'yyyy")
-                + " || " + profit.value;
-
-        }
+        
 
     }
 }

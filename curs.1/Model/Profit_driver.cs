@@ -2,6 +2,7 @@
 using System.Data.Linq.Mapping;
 using System.ComponentModel;
 using System;
+using System.Linq;
 
 namespace Model
 {
@@ -20,6 +21,8 @@ namespace Model
         private DateTime _date;
 
         private decimal _value;
+
+        private DBDataContext db;
 
         private EntityRef<Order> _Order;
 
@@ -43,6 +46,13 @@ namespace Model
         {
             this._Order = default(EntityRef<Order>);
             OnCreated();
+        }
+
+        public Profit_driver(DBDataContext db)
+        {
+            this._Order = default(EntityRef<Order>);
+            OnCreated();
+            this.db = db;
         }
 
         [Column(Storage = "_id_profit_driver", AutoSync = AutoSync.OnInsert, DbType = "Int NOT NULL IDENTITY", IsPrimaryKey = true, IsDbGenerated = true)]
@@ -189,7 +199,7 @@ namespace Model
 
         protected virtual void SendPropertyChanging()
         {
-            if ((this.PropertyChanging != null))
+            if ((PropertyChanging != null))
             {
                 this.PropertyChanging(this, emptyChangingEventArgs);
             }
@@ -202,10 +212,14 @@ namespace Model
                 this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
             }
         }
+        
 
         public override string ToString()
         {
-            return id_driver  + " || " + this.date.ToString("dd'/'MM'/'yyyy") + " || " + this.value;
+            
+           // Driver driver = db.Driver.Where(p => p.id_driver == id_driver).First();
+            return id_driver + " || " + date.ToString("dd'/'MM'/'yyyy")
+                + " || " + value;
         }
     }
 }

@@ -51,7 +51,10 @@ namespace View
             textBox10.Text = order.reg_date.ToString();
             textBox11.Text = order.cost.ToString();
             textBox12.Text = order.paid.ToString();
-            
+            checkBox1.Checked = order.express;
+            richTextBox1.Text += order.comment;
+
+
 
             if (Visitor.user.role == "client")
             {

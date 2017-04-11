@@ -31,6 +31,8 @@ namespace Model
 
         private System.Nullable<decimal> _length;
 
+        private bool _express;
+
         private System.DateTime _reg_date;
 
         private decimal _cost;
@@ -39,6 +41,8 @@ namespace Model
 
         private string _status;
 
+        private string _comment;
+
         private EntitySet<Profit_driver> _Profit_driver;
 
         private EntityRef<Car> _Car;
@@ -46,6 +50,8 @@ namespace Model
         private EntityRef<Client> _Client;
 
         private EntityRef<Driver> _Driver;
+
+        DBDataContext db;
 
         #region Определения метода расширяемости
         partial void OnLoaded();
@@ -71,6 +77,8 @@ namespace Model
         partial void OnheightChanged();
         partial void OnlengthChanging(System.Nullable<decimal> value);
         partial void OnlengthChanged();
+        partial void OnexpressChanging(bool value);
+        partial void OnexpressChanged();
         partial void Onreg_dateChanging(System.DateTime value);
         partial void Onreg_dateChanged();
         partial void OncostChanging(decimal value);
@@ -79,6 +87,8 @@ namespace Model
         partial void OnpaidChanged();
         partial void OnstatusChanging(string value);
         partial void OnstatusChanged();
+        partial void OncommentChanging(string value);
+        partial void OncommentChanged();
         #endregion
 
         public Order()
@@ -88,6 +98,16 @@ namespace Model
             this._Client = default(EntityRef<Client>);
             this._Driver = default(EntityRef<Driver>);
             OnCreated();
+        }
+
+        public Order(DBDataContext db)
+        {
+            this._Profit_driver = new EntitySet<Profit_driver>(new Action<Profit_driver>(this.attach_Profit_driver), new Action<Profit_driver>(this.detach_Profit_driver));
+            this._Car = default(EntityRef<Car>);
+            this._Client = default(EntityRef<Client>);
+            this._Driver = default(EntityRef<Driver>);
+            OnCreated();
+            this.db = db;
         }
 
         [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_id_order", AutoSync = AutoSync.OnInsert, DbType = "Int NOT NULL IDENTITY", IsPrimaryKey = true, IsDbGenerated = true)]
@@ -302,6 +322,26 @@ namespace Model
             }
         }
 
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_express", DbType = "Bit NOT NULL")]
+        public bool express
+        {
+            get
+            {
+                return this._express;
+            }
+            set
+            {
+                if ((this._express != value))
+                {
+                    this.OnexpressChanging(value);
+                    this.SendPropertyChanging();
+                    this._express = value;
+                    this.SendPropertyChanged("express");
+                    this.OnexpressChanged();
+                }
+            }
+        }
+
         [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_reg_date", DbType = "DateTime NOT NULL")]
         public System.DateTime reg_date
         {
@@ -378,6 +418,26 @@ namespace Model
                     this._status = value;
                     this.SendPropertyChanged("status");
                     this.OnstatusChanged();
+                }
+            }
+        }
+
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_comment", DbType = "VarChar(255)")]
+        public string comment
+        {
+            get
+            {
+                return this._comment;
+            }
+            set
+            {
+                if ((this._comment != value))
+                {
+                    this.OncommentChanging(value);
+                    this.SendPropertyChanging();
+                    this._comment = value;
+                    this.SendPropertyChanged("comment");
+                    this.OncommentChanged();
                 }
             }
         }
@@ -531,12 +591,29 @@ namespace Model
 
         public override string ToString()
         {
-            return point_of_departure + " || " + _point_of_arrival + " || " +
-                _weight + " || " + _width + " || " + _height + " || " + _length + " || "
-                + _reg_date.ToString("dd'/'MM'/'yyyy") + " || " + _cost + " || " +
-                    _paid + " || " + _status;
-
+            string str;
+            str = point_of_departure + " || " + _point_of_arrival + " || " +
+                weight;
+            if (width != null) {
+                str += " || " + width;
+            }
+            if (height != null)
+            {
+                str += " || " + height;
+            }
+            if (length != null)
+            {
+                str += " || " + length;
+            }
+            if (express)
+            {
+                str += " ||  express";
+            }
+            str += " || " + reg_date.ToString("dd'/'MM'/'yyyy") + " || " + cost + " || " + paid +
+                " || " + status + " || " + comment;
+            return str;
         }
+
     }
 
 
